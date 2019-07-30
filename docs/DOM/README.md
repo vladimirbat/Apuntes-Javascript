@@ -14,9 +14,11 @@ Los eventos permiten detectar circunstancias acontecidas en el navegador cómo l
 Para asociar un handler a un elemento, además de una referencia al elemeno, se debe indicar el tipo de evento al cual asociar la función de respuesta al evento (handler).
 
 Por ejemplo para detectar en qué momento el documento html ha sido cargado y parseado, estándo ya el DOM disponible, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Para asignar un evento a un elemento del DOM se emplea el método addEventListener:
+
 <code>
     document.***addEventListener***('***DOMContentLoaded***', function(event){
 
     });
 </code>
+
 [Volver al índice de temas](../../README.md)
