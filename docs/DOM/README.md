@@ -15,7 +15,7 @@ Para asociar un handler a un elemento, además de una referencia al elemeno, se 
 
 Por ejemplo para detectar en qué momento el documento html ha sido cargado y parseado, estándo ya el DOM disponible, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Para asignar un evento a un elemento del DOM se emplea el método addEventListener:
 
-    document.addEventListener('DOMContentLoaded', function(event){
+    document.***addEventListener***('***DOMContentLoaded***', function(event){
 
     });
 
