@@ -8,5 +8,14 @@ El DOM mantiene en todo momento la estructura de objetos que son visualizados en
 ## Objeto document
 Todo script JavaScript ejecutado en un navegador tiene acceso a la variable de ambito global ***document***. Esta variable es el punto de acceso para lectura y modificación del DOM.
 
+## Eventos del DOM
+Los eventos permiten detectar circunstancias acontecidas en el navegador cómo la carga del documento, acciones de ratón o de teclado iniciadas por el usuario. Desde JavaScript se pueden detectar estos eventos e indicar que tareas se deben ejecutar cuando estos eventos se produzcan. Para ello a cada evento se le pueden asignar una o varias funciones (handlers o manejadores) que se ejecutarán asociadas a un evento.
+
+Para asociar un handler a un elemento, además de una referencia al elemeno, se debe indicar el tipo de evento al cual asociar la función de respuesta al evento (handler).
+
+Por ejemplo para detectar en qué momento el documento html ha sido cargado y parseado, estándo ya el DOM disponible, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Para asignar un evento a un elemento del DOM se emplea el método addEventListener:
+`document.addEventListener('DOMContentLoaded', function(event){
+
+});`
 
 [Volver al índice de temas](../../README.md)
