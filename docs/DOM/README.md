@@ -7,3 +7,6 @@ El DOM mantiene en todo momento la estructura de objetos que son visualizados en
 
 ## Objeto document
 Todo script JavaScript ejecutado en un navegador tiene acceso a la variable de ambito global ***document***. Esta variable es el punto de acceso para lectura y modificación del DOM.
+
+
+[Volver al índice de temas](../../README.md)
