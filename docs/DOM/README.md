@@ -24,6 +24,21 @@ Por ejemplo para detectar en qué momento el documento HTML ha sido cargado y pa
 Este evento (DOMContentLoaded) es muy importante por que determina el instante a partir del cual podemos acceder a los elementos del DOM para manipularlos (como se indica más delante) o añadirles eventos.
 
 ## Nodos del DOM
+###Propiedades de los nodos del DOM
+<pre>
+    <b>parentNode</b>: nodo padre.
+    <b>childNodes</b>: matriz de nodos hijo
+    <b>firstChild</b>: primer hijo
+    <b>lastChild</b>: último hijo
+    <b>id</b>: identificador 
+    <b>className</b>: clase de estilo
+    <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
+    <b>nodeType</b>: 1=Etiqueta; 3=texto; 9= objeto document
+    <b>previousSibling</b>: hermano anterior
+    <b>nextSibling</b>: hermano posterior
+    <b>nodeValue</b>: texto de un nodo de texto
+</pre>
+
 
 ## Elementos del DOM
 
