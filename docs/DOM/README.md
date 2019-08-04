@@ -40,9 +40,6 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
     <b>childNodes</b>: matriz de nodos hijo
     <b>firstChild</b>: primer hijov
     <b>lastChild</b>: último hijo
-    <b>id</b>: identificador 
-    <b>className</b>: clase de estilo
-    <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
     <b>nodeType</b>: 1=Etiqueta; 3=texto; 9= objeto document
     <b>previousSibling</b>: hermano anterior
     <b>nextSibling</b>: hermano posterior
@@ -58,10 +55,26 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
     <b>boolean hasChildNodes()</b>: true si tiene hijos.
     <b>String getAttribute("atributo")</b>: Retorna el valor de un atributo.
     <b>setAttribute("atributo", "valor")</b>: Establece el valor de una atributo.
-    <b>Nodo cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. Si el boolean es true, copia además los nodos hijos.
+    <b>Node cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. Si el boolean es true, copia además los nodos hijos.
 </pre>
 
 ## Elementos del DOM
+Los Elementos (o Elements) son los objetos del DOM correspondientes a etiquetas HTML. El tipo Element hereda de Node por lo que hereda de Node sus atributos y métodos, pero además agrega los indicados en los dos siguientes apartados.
+
+### Propiedades de los Elements
+Además de las propiedades heredadas de Node, los Elements tienen las siguientes:
+<pre>
+    <b>id</b>: identificador 
+    <b>className</b>: clase o clases de estilo
+    <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
+    <b>textContent</b>: texto interior del elemento
+</pre>
+
+### Métodos de los Elements
+Además de los métodos hereados de Node, los Elements tienen los siguientes:
+<pre>
+    
+</pre>
 
 ## Buscar y obtener referencias a nodos del DOM
 
