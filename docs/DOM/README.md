@@ -32,6 +32,8 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
 | 3       | Text      | Representan a un bloque de texto p.e.: el texto interior a una etiqueta        |
 | 9       | Document  | Representan a todo el objeto Document resultante de analizar un documento HTML |
 
+[Listado completo de tipos de nodos DOM](https://www.w3schools.com/jsref/prop_node_nodetype.asp)
+
 ### Propiedades de los nodos del DOM
 <pre>
     <b>parentNode</b>: nodo padre
@@ -47,9 +49,22 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
     <b>nodeValue</b>: texto de un nodo de texto
 </pre>
 
+### Métodos de los nodos del DOM
+<pre>
+    <b>appendChild(nuevoNodo)</b>: Inserta un nodo hijo.
+    <b>replaceChild(nodoNuevo,nodoAntiguo)</b>: reemplaza un hijo por otro.
+    <b>removeChild(nodoAQuitar)</b>: Elimina un nodo hijo.
+    <b>insertBefore(nodoNuevo, nodoActual)</b>: inserta un hijo delante de otro
+    <b>boolean hasChildNodes()</b>: true si tiene hijos.
+    <b>String getAttribute("atributo")</b>: Retorna el valor de un atributo.
+    <b>setAttribute("atributo", "valor")</b>: Establece el valor de una atributo.
+    <b>Nodo cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. Si el boolean es true, copia además los nodos hijos.
+</pre>
 
 ## Elementos del DOM
 
 ## Buscar y obtener referencias a nodos del DOM
+
+## Crear nodos e insertarlos en el DOM
 
 [Volver al índice de temas](../../README.md)
