@@ -1,18 +1,18 @@
 # DOM (Document Obejct Model)
 
-DOM es una especificación de la w3c que indica como debe ser la representación jerárquica de un documento XML.
+**DOM** es una especificación de la **W3C** que indica como debe ser la representación jerárquica de un documento XML.
 DOM define una serie de interfaces con métodos que se llaman igual en todos lo lenguajes de programación.
 
 ![alt text](./img/DOM.png "Ejemplo del DOM del un documento HTML")
 
 La carga de un documento HTML en un navegador, de forma simplificada, consiste en un proceso de análisis de las etiquetas HTML de dicho documento y su traducción (renderizado) a pixeles dentro del área de visulización (View Port) del navegador.
 
-Como consecuencia del análisis de las etiquetas HTML del documento, el navegador crea, en memoria, una estructura de objetos anidados que tiene forma de árbol (es decir cada objeto puede tener cero, uno o más hijos) que representan los elementos que se mostrarán en el área de visualización (View Port). A esa estructura de objetos se le denomina D.O.M o ***DOM*** que son las siglas de ***Document Obejct Model***.
+Como consecuencia del análisis de las etiquetas HTML del documento, el navegador crea, en memoria, una estructura de objetos anidados que tiene forma de árbol (es decir cada objeto puede tener cero, uno o más hijos) que representan los elementos que se mostrarán en el área de visualización (View Port). A esa estructura de objetos se le denomina D.O.M o **DOM** que son las siglas de ***Document Obejct Model***.
 
 El DOM mantiene en todo momento la estructura de objetos que son visualizados en el navegador. En un primer momento el DOM tiene la estructura resultante de analizar el documento HTML recibido del servidor, pero posteriormente, mediante JavaScript se puede modificar el DOM y como consecuencia lo que visualiza (renderiza) en navegador.
 
 ## Objeto document
-Todo script JavaScript ejecutado en un navegador tiene acceso a la variable de ambito global ***document***. Esta variable es el punto de acceso para lectura y modificación del DOM.
+Todo script JavaScript ejecutado en un navegador tiene acceso a la variable de ambito global **document**. Esta variable es el punto de acceso para lectura y modificación del DOM.
 
 ## Eventos del DOM
 Los eventos permiten detectar circunstancias acontecidas en el navegador cómo la carga del documento, acciones de ratón o de teclado iniciadas por el usuario. Desde JavaScript, se pueden detectar estos eventos e indicar qué tareas se deben ejecutar cuando estos eventos se produzcan. Para ello, a cada elemento se le pueden asignar una o varias funciones (handlers o manejadores) que se ejecutarán asociadas a un evento.
