@@ -73,6 +73,7 @@ Además de las propiedades heredadas de Node, los Elements tienen las siguientes
 <pre>
     <b>id</b>: identificador 
     <b>className</b>: clase o clases de estilo
+    <b>style</b>: permite leer y modificar los atributos de estilo del elemento
     <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
     <b>textContent</b>: texto interior del elemento
 </pre>
