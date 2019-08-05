@@ -21,11 +21,11 @@ Para asociar un handler a un elemento, además de una referencia al elemeno, se 
 
 Por ejemplo para detectar en qué momento el documento HTML ha sido cargado y parseado, estándo ya el DOM disponible, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Para asignar un evento a un elemento del DOM se emplea el método addEventListener:
 
-<pre>
+```javascript
     document.<b>addEventListener</b>('<b>DOMContentLoaded</b>', function(event){
 
     });
-</pre>
+```
 
 Este evento (DOMContentLoaded) es muy importante por que determina el instante a partir del cual podemos acceder a los elementos del DOM para manipularlos (como se indica más delante) o añadirles eventos.
 
@@ -79,6 +79,19 @@ Además de las propiedades heredadas de Node, los Elements tienen las siguientes
 
 ## Buscar y obtener referencias a nodos del DOM
 
+<pre>
+    <b>Node getElementById("id")</b>: Retorna el elemento que tiene el id indicado.
+    <b>NodeList getElementsByTagName("etiqueta")</b>: retorna una matriz de nodos que tienen la etiqueta indicada.
+    <b>Element documentElement</b>: Contiene una referencia a un objeto Element que es el elemento raíz del documento.
+    <b>NodeList querySelectorAll("selector css")</b>: retorna una matriz de los nodos que cumplen el selector css indicado.
+    <b>Node querySelector("selector css")</b>: retorna el primer elemento que que cumple el selector css indicado.
+</pre>
+
 ## Crear nodos e insertarlos en el DOM
 
+```
+    <b>Node createElement("etiqueta")</b>: Crea un nodo con la etiqueta indicada.
+    <b>Node createTextNode(texto)</b>: Crea un nodo de texto.
+    <b>clear()</b>: Borra el contenido de un documento
+```
 [Volver al índice de temas](../../README.md)
