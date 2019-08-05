@@ -1,4 +1,10 @@
 # DOM (Document Obejct Model)
+
+DOM es una especificación de la w3c que indica como debe ser la representación jerárquica de un documento XML.
+DOM define una serie de interfaces con métodos que se llaman igual en todos lo lenguajes de programación.
+
+![alt text](./img/DOM.png "Ejemplo del DOM del un documento HTML")
+
 La carga de un documento HTML en un navegador, de forma simplificada, consiste en un proceso de análisis de las etiquetas HTML de dicho documento y su traducción (renderizado) a pixeles dentro del área de visulización (View Port) del navegador.
 
 Como consecuencia del análisis de las etiquetas HTML del documento, el navegador crea, en memoria, una estructura de objetos anidados que tiene forma de árbol (es decir cada objeto puede tener cero, uno o más hijos) que representan los elementos que se mostrarán en el área de visualización (View Port). A esa estructura de objetos se le denomina D.O.M o ***DOM*** que son las siglas de ***Document Obejct Model***.
@@ -55,7 +61,8 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
     <b>boolean hasChildNodes()</b>: true si tiene hijos.
     <b>String getAttribute("atributo")</b>: Retorna el valor de un atributo.
     <b>setAttribute("atributo", "valor")</b>: Establece el valor de una atributo.
-    <b>Node cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. Si el boolean es true, copia además los nodos hijos.
+    <b>Node cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. 
+        Si el boolean es true, copia además los nodos hijos.
 </pre>
 
 ## Elementos del DOM
@@ -68,12 +75,6 @@ Además de las propiedades heredadas de Node, los Elements tienen las siguientes
     <b>className</b>: clase o clases de estilo
     <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
     <b>textContent</b>: texto interior del elemento
-</pre>
-
-### Métodos de los Elements
-Además de los métodos hereados de Node, los Elements tienen los siguientes:
-<pre>
-    
 </pre>
 
 ## Buscar y obtener referencias a nodos del DOM
