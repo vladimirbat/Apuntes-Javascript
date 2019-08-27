@@ -124,3 +124,19 @@ fetch('https://example.com/api/users', {
 	})
 }).then(function() { /* gestión de la respuesta */ });
 ```
+### Ejemplo de envío de un archivo
+```javascript
+  var formData = new FormData();
+  var fileField = document.querySelector("input[type='file']");
+
+  formData.append('username', 'abc123');
+  formData.append('avatar', fileField.files[0]);
+
+  fetch('https://example.com/profile/avatar', {
+    method: 'PUT',
+    body: formData
+  })
+  .then(response => response.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+```
