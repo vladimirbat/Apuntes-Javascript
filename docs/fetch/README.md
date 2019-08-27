@@ -38,7 +38,7 @@ Las interfaces **Response** y **Request**, que contienen toda la información de
 ### Atributos de Body
 - **body** -> Stream ([ReadableStream](https://developer.mozilla.org/es/docs/Web/API/ReadableStream)) con el *body* de la respuesta.
 - **bodyUsed** -> booleano que indica que el body ya ha sido leido.
-<a link="metodos-body"></a>
+<a id="metodos-body"></a>
 ### Métodos de body
 - **arrayBuffer()** -> Retorna una promesa que en su resolución proporciona un arrayBuffer con los datos del body.
 - **blob()** -> Retorna una promesa que en su resolución proporciona un Blob con los datos del body.
