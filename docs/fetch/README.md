@@ -50,4 +50,4 @@ fetch('http://example.com/movies.json')
 - ***text()*** -> Retorna una promesa que en su resolución proporciona un string con los datos del body.
 - ***clone()*** -> Retorna una copia del objeto Response.
 - ***error()*** -> Método estático que retorna un objeto Response correspondiente a un error de conexión.
-- ***redirect()*** -> Retorna un nuevo objeto Response resultante de reemplazarle la url y opcionalmente el estado (estado de redirección).
+- ***redirect()*** -> Retorna un nuevo objeto Response resultante de reemplazarle la url y opcionalmente el estado (estado de redirección) ([referencia de *redirect*](https://developer.mozilla.org/es/docs/Web/API/Response/redirect)).
