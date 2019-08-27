@@ -107,7 +107,7 @@ El objeto de configuración (**config**) del Request puede contener las siguient
 | headers     | Objeto Header o JSON           | Contiene las cabeceras que se enviarán en la petición                          |
 | referrer    | (string)                       | desde donde se realiza la petición ??????????????????                          |
 | mode        | cors, no-cors, same-origin     | Tratamiento de política del mismo origen y CORS de la petición                 |
-| credentials | omit (default), same-origin    | Indica si las cookies con credenciales deben ser enviadas o no                 |
+| credentials | omit(default), include, same-origin | Indica si las cookies con credenciales deben ser enviadas siempre (include), solo si es al mismo dominio (same-orgin) o no se envian (omit)                |
 | redirect    | follow, error, manual          |                                                                                |
 | integrity   |                                |                                                                                |
 | cache       | default, reload, no-cache      | Módo de cacheo de la petición                                                  |
