@@ -140,3 +140,21 @@ fetch('https://example.com/api/users', {
   .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response));
 ```
+
+## Interface Header
+La interface Header puede recibir en su constructor un objeto JSON con las cabeceras que se quieren enviar.
+```javascript
+	var headers = new Headers({
+		  'Accept': 'application/json',
+      'Content-Type': 'application/json'
+	});
+```
+Por otra parte, la interfaz presenta los siguientes métodos para leer/escribir y eliminar cabederas:
+- **set(name: string, value: string)** -> agrega una cabecera si no existía, de lo contrario la remmplaza.
+- **append(name: string, value: string)** -> agrega una cabecera si no existía, de lo contrario concatena el valor indicado.
+- **delete(name: string)** -> elimina una cabecera. 
+- **get(name: string)** -> retorna un string con el valor de la cabecera indicada. 
+- **has(name: string)** -> retorna un booleano indicando si la cabecera indicada está incluida.
+- **keys()** -> retorna un iterator con los *nombres* de las cabeceras incluidas.
+- **values()** -> retorna un iterator con los *valores* de las cabeceras incluidas.
+- **entries()** -> retorna un iterator de los pares clave/valor correspondientes a las cabeceras. Dichos pares se reciben como un array con el nombre en la posición 0 y el valor en la posición 1.
