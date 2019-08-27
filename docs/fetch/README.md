@@ -1,5 +1,5 @@
 # API Fetch
-Javascript proporciona la función ***fetch*** que permite realizar peticiones de http.
+Javascript proporciona la función ***fetch*** (en realidad es un método de la interfaz **GlobalFetch** implementada por  [Window](https://developer.mozilla.org/es/docs/Web/API/Window) y [WorkerGlobalScope](https://developer.mozilla.org/es/docs/Web/API/WorkerGlobalScope)) que permite realizar peticiones de http.
 ## Uso básico
 La sintaxis básica de la función *fetch* es la siguiente:
 ```javascript
@@ -19,6 +19,8 @@ La lectura del body de la respuesta se puede leer (mediante la propiedad ***body
 - ***json()*** -> Retorna una promesa que en su resolución proporciona un objeto JSON con los datos del body.
 - ***text()*** -> Retorna una promesa que en su resolución proporciona un string con los datos del body.
 
+Hay que tener en cuenta que al ser el body un ReadableStream, solamente puede ser leido una vez. Para conocer si el body ya ha sido leido, se puede consultar la propiedad **bodyUsed** (explicada más adelante).
+
 ## Ejemplo básico: petición GET a un endpoint que retorna JSON
 A continuación se muestra un ejemplo básico de una petición GET a un endpoint que retorna un JSON.
 ```javascript
@@ -30,24 +32,35 @@ fetch('http://example.com/movies.json')
     console.log(myJson);
   });
 ```
-## Interface Response
+## Mixin Body
+Las interfaces **Response** y **Request**, que contienen toda la información de una respuesta y una petición respectivamente, heredan de la interface (mixin) **Body**. **Body** presenta los siguientes atributos y métodos.
+
+### Atributos de Body
+- **body** -> Stream ([ReadableStream](https://developer.mozilla.org/es/docs/Web/API/ReadableStream)) con el *body* de la respuesta.
+- **bodyUsed** -> booleano que indica que el body ya ha sido leido.
+<a link="metodos-body"></a>
+### Métodos de body
+- **arrayBuffer()** -> Retorna una promesa que en su resolución proporciona un arrayBuffer con los datos del body.
+- **blob()** -> Retorna una promesa que en su resolución proporciona un Blob con los datos del body.
+- **formData()** -> Retorna una promesa que en su resolución proporciona un objeto [FormData](https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData) con los datos del body.
+- **json()** -> Retorna una promesa que en su resolución proporciona un objeto JSON con los datos del body.
+- **text()** -> Retorna una promesa que en su resolución proporciona un string con los datos del body.
+
+## La interface Response
+La interface **Response** hereda de la interface (mixin) **Body** y contiene toda la información relativa a una respuesta http.
+
 ### Atributos de Response
-- body
-- bodyUsed
-- headers
-- ok
-- redirected
-- status
-- statusText
-- type
-- url
+- **headers** -> Objeto [Headers](https://developer.mozilla.org/es/docs/Web/API/Headers) con las cabeceras de la respuesta http.
+- **ok** -> booleano que indica si la respuesta fue exitosa (estado en el rango  200-299).
+- **redirected** -> booleano que indica que la respuesta es una redirección.
+- **status** -> Código http del *status* de la respuesta (200, 404, 500).
+- **statusText** -> Mensaje del *status* de la respuesta.
+- **type** -> Tipo de respuesta (basic, cors, ...) [referencia de type](https://developer.mozilla.org/es/docs/Web/API/Response/type).
+- **url** -> URL completa de la petición.
 
 ### Métodos de Response
-- ***arrayBuffer()*** -> Retorna una promesa que en su resolución proporciona un arrayBuffer con los datos del body.
-- ***blob()*** -> Retorna una promesa que en su resolución proporciona un Blob con los datos del body.
-- ***formData()*** -> Retorna una promesa que en su resolución proporciona un objeto [FormData](https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData) con los datos del body.
-- ***json()*** -> Retorna una promesa que en su resolución proporciona un objeto JSON con los datos del body.
-- ***text()*** -> Retorna una promesa que en su resolución proporciona un string con los datos del body.
-- ***clone()*** -> Retorna una copia del objeto Response.
-- ***error()*** -> Método estático que retorna un objeto Response correspondiente a un error de conexión.
-- ***redirect()*** -> Retorna un nuevo objeto Response resultante de reemplazarle la url y opcionalmente el estado (estado de redirección) ([referencia de *redirect*](https://developer.mozilla.org/es/docs/Web/API/Response/redirect)).
+Además de los [métodos indicados en Body](#metodos-body) Response declara los métodos siguientes.
+- **clone()** -> Retorna una copia del objeto *Response*.
+- **error()** -> Método estático que retorna un objeto *Response* correspondiente a un error de conexión.
+- **redirect()** -> Retorna un nuevo objeto *Response* resultante de reemplazarle la url y opcionalmente el estado (estado de redirección) ([referencia de *redirect*](https://developer.mozilla.org/es/docs/Web/API/Response/redirect)).
+
