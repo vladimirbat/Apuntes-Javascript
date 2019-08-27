@@ -35,7 +35,7 @@ fetch('http://example.com/movies.json')
 ## Mixin Body
 Las interfaces **Response** y **Request**, que contienen toda la información de una respuesta y una petición respectivamente, heredan de la interface (mixin) **Body**. **Body** presenta los siguientes atributos y métodos.
 
-### Atributos de Body
+### Atributos de Body <a name="atributos-body"></a>
 - **body** -> Stream ([ReadableStream](https://developer.mozilla.org/es/docs/Web/API/ReadableStream)) con el *body* de la respuesta.
 - **bodyUsed** -> booleano que indica que el body ya ha sido leido.
 
@@ -50,6 +50,7 @@ Las interfaces **Response** y **Request**, que contienen toda la información de
 La interface **Response** hereda de la interface (mixin) **Body** y contiene toda la información relativa a una respuesta http.
 
 ### Atributos de Response
+Además de los [atributos indicados en Body](#atributos-body) **Response** declara los atributos siguientes:
 - **headers** -> Objeto [Headers](https://developer.mozilla.org/es/docs/Web/API/Headers) con las cabeceras de la respuesta http.
 - **ok** -> booleano que indica si la respuesta fue exitosa (estado en el rango  200-299).
 - **redirected** -> booleano que indica que la respuesta es una redirección.
@@ -59,7 +60,7 @@ La interface **Response** hereda de la interface (mixin) **Body** y contiene tod
 - **url** -> URL completa de la petición.
 
 ### Métodos de Response
-Además de los [métodos indicados en Body](#metodos-body) Response declara los métodos siguientes.
+Además de los [métodos indicados en Body](#metodos-body) **Response** declara los métodos siguientes:
 - **clone()** -> Retorna una copia del objeto *Response*.
 - **error()** -> Método estático que retorna un objeto *Response* correspondiente a un error de conexión.
 - **redirect()** -> Retorna un nuevo objeto *Response* resultante de reemplazarle la url y opcionalmente el estado (estado de redirección) ([referencia de *redirect*](https://developer.mozilla.org/es/docs/Web/API/Response/redirect)).
