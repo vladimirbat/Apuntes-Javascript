@@ -1,5 +1,5 @@
 
-<div style="text-align: right"> <a href="../../README.md"> Volver al índice de temas </a> </div>
+<div style="text-align: right; width:100%;"> <a href="../../README.md"> Volver al índice de temas </a> </div>
 # DOM (Document Obejct Model)
 
 **DOM** es una especificación de la **W3C** que indica como debe ser la representación jerárquica de un documento XML.
