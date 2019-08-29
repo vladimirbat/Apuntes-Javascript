@@ -264,7 +264,7 @@ Y el código HTML del body del document es este:
 Primero se realiza la petición con fetch de una imagen de otro servidor. El el servidor para dicha imagen no está permitido el CORS.
 Por lo tanto,el fetch produciría un error.  
 
-Si en la configuración del fetch se incluye **mode: 'no-cors'**, la petición se hace, aunque su body y sus headers no son accesibles. La utilidad de esto es que sabemos que el recurso existe y ha quedado en caché de disco si el usuario lo tiene habilitado.
+Si en la configuración del fetch se incluye **mode: 'no-cors'**, la petición se hace, aunque su body y sus headers no son accesibles. A esto se le denomina una ***respuesta opaca***. La utilidad de las *respuestas opacas* es que quedan cacheadas en disco, siempre que el usuario tenga habilitada esa opción en el navegador.
 
 Pasados 5 segundos se lanza la asignación de la url de la imagen cacheada al *src* de un elemento IMG del DOM.
 
