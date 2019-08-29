@@ -1,0 +1,13 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "dni": 1,
+      "nombre": "Vladimir",
+      "apellidos": "Bataller"
+    }
+  ],
+  "aplicacion": {
+    "name": "Apuntes Javascript"
+  }
+}
