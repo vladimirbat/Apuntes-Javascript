@@ -273,5 +273,6 @@ Si se visualiza con las DevTools del navegador las dos peticiones de red de la i
 **Nota**: para realizar este ensayo, no debe estar activado el *disble caché* de las DevTools y se debe haber borrado el caché previo (ctrl + shift + supr).
 ## Enlaces de interés
 - [clase URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+- [What is an opaque response?](https://blog.fullstacktraining.com/what-is-an-opaque-response/)
 
 [Volver al índice de temas](../../README.md)
