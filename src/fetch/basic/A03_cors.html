@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CORS</title>
+    <script>
+        function analizarRespuesta(response)  {
+          console.log('OBJETO RESPONSE:', response);
+        }
+        function gestionarErrores(error){
+          console.log('Se produjo un error', error);
+        }
+        document.addEventListener('DOMContentLoaded', function(event){
+          var config = {
+            mode: 'no-cors'
+          }
+          var url = 'https://elpais.com/iconos/v2.x/v2.0/logos/elpais-economia.svg';
+          fetch(url, config)
+            .then(analizarRespuesta)
+            .catch(gestionarErrores);
+          setTimeout(() => {
+            document.getElementById('imagen').src = url;
+          },5000);
+        });
+
+    </script>
+</head>
+<body>
+  <!--
+        Primero se realiza la petición con fetch de una imagen de otro servidor. Para dicha imagen no está permitido el CORS.
+        Por lo que el fetch produciría un error.  Si en la configuración del fetch se incluye mode: 'no-cors', la petición se hace,
+        aunque su body y sus headers no son accesibles, la ventaja es que sabemos que el recurso existe y ha quedado en
+        caché de disco si el usuario lo tiene habilitado.
+        Pasados 5 segundos lazamos la asignación de la url de la imagen cacheada al src de un elemento IMG del DOM.
+        Si se visualiza con las DevTools del navegador las dos peticiones de red de la imagen, en la segunda se
+        indica que en realidad se ha tomado de cache de disco (Status Code: 200  (from disk cache)) y además
+        se verá que el tiempo de carga es sustancialmente inferior.
+        Nota: para realizar este ensayo, no debe estar activado el disble caché de las DevTools y se debe
+        haber borrado el caché previo (ctrl + shift + supr).
+ -->
+  <div>
+    <img id="imagen" alt="imagen no cargada"/>
+  </div>
+</body>
+</html>

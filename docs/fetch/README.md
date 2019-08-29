@@ -226,6 +226,51 @@ Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la sig
 - **sort(): void** -> Ordena alfabeticamente por nombre los parámetros.
 - **toString(): string** -> Retorna un string con la queryString sin la '?'.
 
+## CORS
+La politica del mismo origen indica que desde JavaScript solamente se puede obtener datos mediante peticiones http que cumplan:
+- Que pertenecen al mismo dominio y puerto (mismo origen).
+- Que dichos recursos son servidos con la cabecera **'Access-Control-Allow-Origin'** que apunte a nuestro dominio o a \*.
+
+El API Fetch permite realizar peticiones que no cumplan ninguna de estas condiciones, mediante la configuración **mode: 'no-cors'**. A continuación se muestra un ejemplo.
+Su JavaScript es el siguiente:
+```javascript
+  function analizarRespuesta(response)  {
+      console.log('OBJETO RESPONSE:', response);
+  }
+  function gestionarErrores(error){
+      console.log('Se produjo un error', error);
+  }
+  document.addEventListener('DOMContentLoaded', function(event){
+      var config = {
+          mode: 'no-cors'
+      }
+      var url = 'https://elpais.com/iconos/v2.x/v2.0/logos/elpais-economia.svg';
+      fetch(url, config)
+          .then(analizarRespuesta)
+          .catch(gestionarErrores);
+      setTimeout(() => {
+          document.getElementById('imagen').src = url;
+      },5000);
+  });
+```
+Y el código HTML del body del document es este:
+```html
+  <body>
+        <div>
+            <img id="imagen" alt="imagen no cargada"/>
+        </div>
+  </body>
+```
+Primero se realiza la petición con fetch de una imagen de otro servidor. El el servidor para dicha imagen no está permitido el CORS.
+Por lo tanto,el fetch produciría un error.  
+
+Si en la configuración del fetch se incluye **mode: 'no-cors'**, la petición se hace, aunque su body y sus headers no son accesibles. La utilidad de esto es que sabemos que el recurso existe y ha quedado en caché de disco si el usuario lo tiene habilitado.
+
+Pasados 5 segundos se lanza la asignación de la url de la imagen cacheada al *src* de un elemento IMG del DOM.
+
+Si se visualiza con las DevTools del navegador las dos peticiones de red de la imagen, en la segunda se indica que en realidad se ha tomado de cache de disco (Status Code: 200  (from disk cache)) y además se verá que el tiempo de carga es sustancialmente inferior.
+
+**Nota**: para realizar este ensayo, no debe estar activado el *disble caché* de las DevTools y se debe haber borrado el caché previo (ctrl + shift + supr).
 ## Enlaces de interés
 - [clase URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
 
