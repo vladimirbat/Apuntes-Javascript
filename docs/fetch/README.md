@@ -46,7 +46,7 @@ fetch('https://upload.wikimedia.org/wikipedia/commons/7/77/Delete_key1.jpg')
 ```
 
 ## Mixin Body <a name="mixin-body"></a>
-Las interfaces **Response** y **Request**, que contienen toda la información de una respuesta y una petición respectivamente, heredan de la interface (mixin) **Body**. **Body** presenta los siguientes atributos y métodos.
+Las interfaces **Response** y **Request**, que contienen toda la información de una respuesta y una petición respectivamente, heredan de la interface (mixin) **Body**. **Body** que representa la parte de la información de una petición http correspondiente al body de dicha petición. **Body** presenta los siguientes atributos y métodos.
 
 ### Atributos de Body <a name="atributos-body"></a>
 - **body** -> Stream ([ReadableStream](https://developer.mozilla.org/es/docs/Web/API/ReadableStream)) con el *body* de la respuesta.
@@ -111,7 +111,7 @@ El objeto de configuración (**config**) del Request puede contener las siguient
 | redirect    | follow, error, manual          |                                                                                |
 | integrity   |                                |                                                                                |
 | cache       | default, reload, no-cache      | Módo de cacheo de la petición                                                  |
-| body        | (string)                       | Datos que se van a enviar (Hay que convertirlo a string)                       |
+| body        | ( Blob, BufferSource, FormData, [URLSearchParams](#url-search-params), USVString, o ReadableStream)                       | Datos que se van a enviar (Hay que convertirlo a string)                       |
 
 Nota: otra sintaxis alternativa de fetch es pasar un como primer argumento la url y como segundo un objeto JSON con la configuración. De este modo no se emplea explicitamente un objeto **Request**.
 ```javascript
@@ -160,7 +160,7 @@ Por otra parte, la interfaz presenta los siguientes métodos para leer/escribir 
 - **entries()** -> retorna un iterator de los pares clave/valor correspondientes a las cabeceras. Dichos pares se reciben como un array con el nombre en la posición 0 y el valor en la posición 1.
 
 
-## clase URLSearchParams
+## clase URLSearchParams <a name="url-search-params"></a>
 La clase URLSearchParams permite el trabajo con parámetros de tipo QueryString. En su constructor recibe un string con la URL con la que se quiere trabajar.
 
 El método entries() o directamente el propio objeto se puede recorrer con un bucle for...of donde cada elemento será un array con la clave en la posición 0 y el valor en la posición 1.
