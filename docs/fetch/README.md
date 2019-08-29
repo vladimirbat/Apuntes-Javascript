@@ -25,7 +25,7 @@ Hay que tener en cuenta que al ser el body un ReadableStream, solamente puede se
 ### Ejemplo 1: petición GET a un endpoint que retorna JSON
 A continuación se muestra un ejemplo básico de una petición GET a un endpoint que retorna un JSON.
 ```javascript
-fetch('http://example.com/movies.json')
+fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/clientes/1')
   .then(function(response) {
     return response.json();
   })
@@ -33,6 +33,23 @@ fetch('http://example.com/movies.json')
     console.log(myJson);
   });
 ```
+Este ejemplo se puede mejorar agregando la condición de si se ha obtenido una respuesta correcta 2XX, para ello se puede emplear el atributo ok de la respuesta.
+```javascript
+  fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/clientes/1')
+    .then(function(response) {
+      if(!response.ok){
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(myJson);
+    }).catch(() => {
+      console.log('Se produjo un error');
+    });
+  });
+```
+En este caso si se reemplaza en la url *clientes* por *clients* se recibirá una respuesta 404 del servidor y en la consola se mostrará *Se produjo un error*.
 ### Ejemplo 2: petición GET a un endpoint que retorna datos binarios (Blob)
 A continuación se muestra un ejemplo básico de una petición GET a un endpoint que retorna una imagen (Binary Large OBject [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)).
 ```javascript
@@ -182,7 +199,7 @@ Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la sig
 ### Métodos
 - **append(name, value)** -> Agrega un parámetro con el nombre y valor indicado.
 - **set(name, value)** -> Establece o reemplaza si ya existe el valor del parámetro indicado.
-- **get(name)** -> Retorna el valor del pámetro indicado (si hubiera varios, solamente retorna el primero).
+- **get(name): string** -> Retorna el valor del pámetro indicado (si hubiera varios, solamente retorna el primero).
 - **has(name): boolean** -> Indica si el parámetro con el nombre indicado existe.
 - **delete(name)** -> Elimina el parámetro con el nombre indicado.
 - **forEach(callback)** -> Ejecuta la función sumistrada por cada uno de los parámetros contenidos. La estructura de dicha función debe ser *function(value, key)*.
@@ -191,6 +208,6 @@ Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la sig
 - **values(): iterator** -> Retorna un iterador con los valores.
 - **getAll(name): string[]** -> Retorna un array de string con todos los valores del parámentro indicado.
 - **sort(): void** -> Ordena alfabeticamente por nombre los parámetros.
-- **toString()** -> Retorna un string con la queryString sin la '?'.
+- **toString(): string** -> Retorna un string con la queryString sin la '?'.
 
 [Volver al índice de temas](../../README.md)
