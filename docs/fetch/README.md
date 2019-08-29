@@ -192,3 +192,5 @@ Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la sig
 - **getAll(name): string[]** -> Retorna un array de string con todos los valores del parámentro indicado.
 - **sort(): void** -> Ordena alfabeticamente por nombre los parámetros.
 - **toString()** -> Retorna un string con la queryString sin la '?'.
+
+[Volver al índice de temas](../../README.md)
