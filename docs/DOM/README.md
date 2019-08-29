@@ -1,3 +1,5 @@
+
+<div style="text-align: right"> [Volver al índice de temas](../../README.md) </div>
 # DOM (Document Obejct Model)
 
 **DOM** es una especificación de la **W3C** que indica como debe ser la representación jerárquica de un documento XML.
@@ -61,7 +63,7 @@ Los objetos detectados en un documento html fruto de realizarle una análisis DO
     <b>boolean hasChildNodes()</b>: true si tiene hijos.
     <b>String getAttribute("atributo")</b>: Retorna el valor de un atributo.
     <b>setAttribute("atributo", "valor")</b>: Establece el valor de una atributo.
-    <b>Node cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método. 
+    <b>Node cloneNode(boolean)</b>: retorna un nodo igual al que se le aplica el método.
         Si el boolean es true, copia además los nodos hijos.
 </pre>
 
@@ -71,7 +73,7 @@ Los Elementos (o Elements) son los objetos del DOM correspondientes a etiquetas 
 ### Propiedades de los Elements
 Además de las propiedades heredadas de Node, los Elements tienen las siguientes:
 <pre>
-    <b>id</b>: identificador 
+    <b>id</b>: identificador
     <b>className</b>: clase o clases de estilo
     <b>style</b>: permite leer y modificar los atributos de estilo del elemento
     <b>tagName y nodeName</b>: Nombre de la etiqueta HTML
