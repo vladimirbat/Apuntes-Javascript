@@ -126,19 +126,19 @@ fetch('https://example.com/api/users', {
 ```
 ### Ejemplo de envío de un archivo
 ```javascript
-  var formData = new FormData();
-  var fileField = document.querySelector("input[type='file']");
+var formData = new FormData();
+var fileField = document.querySelector("input[type='file']");
 
-  formData.append('username', 'abc123');
-  formData.append('avatar', fileField.files[0]);
+formData.append('username', 'abc123');
+formData.append('avatar', fileField.files[0]);
 
-  fetch('https://example.com/profile/avatar', {
-    method: 'PUT',
-    body: formData
-  })
-  .then(response => response.json())
-  .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response));
+fetch('https://example.com/profile/avatar', {
+  method: 'PUT',
+  body: formData
+})
+.then(response => response.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', response));
 ```
 
 ## Interface Header
@@ -158,3 +158,8 @@ Por otra parte, la interfaz presenta los siguientes métodos para leer/escribir 
 - **keys()** -> retorna un iterator con los *nombres* de las cabeceras incluidas.
 - **values()** -> retorna un iterator con los *valores* de las cabeceras incluidas.
 - **entries()** -> retorna un iterator de los pares clave/valor correspondientes a las cabeceras. Dichos pares se reciben como un array con el nombre en la posición 0 y el valor en la posición 1.
+
+
+## clase URLSearchParams
+La clase URLSearchParams permite el trabajo con parámetros de tipo QueryString. En su constructor recibe un string con la URL con la que se quiere trabajar.
+
