@@ -7,7 +7,7 @@ fetch(url: string): Promise
 ```
 
 En su forma más sencilla, *fetch* recibe un string con la url sobre la cual se realizará una petición GET. La respuesta es una promesa cuya resolución será:
-- Si se ha podido hacer la conexión (independientemente de que el código de respuesta sea 200, 404, 500, ...), en ese caso se ejecutará el ***then***. 
+- Si se ha podido hacer la conexión (independientemente de que el código de respuesta sea 200, 404, 500, ...), en ese caso se ejecutará el ***then***.
 - En caso de un error de conexión, se ejecutará el handler de catch.
 
 El método then proporciona un objeto [Response](https://developer.mozilla.org/es/docs/Web/API/Response) con la información obtenida de la respuesta del servidor.
@@ -79,7 +79,7 @@ Además de los [métodos indicados en Body](#metodos-body) **Response** declara 
 - **redirect()** -> Retorna un nuevo objeto *Response* resultante de reemplazarle la url y opcionalmente el estado (estado de redirección) ([referencia de *redirect*](https://developer.mozilla.org/es/docs/Web/API/Response/redirect)).
 
 ## La interface Request
-La función **fetch**, en lugar de recibir como argumento un string con la url de la petición, puede recibir un objeto **Request** (herdero de [Body](#mixin-body)). 
+La función **fetch**, en lugar de recibir como argumento un string con la url de la petición, puede recibir un objeto **Request** (herdero de [Body](#mixin-body)).
 
 El constructor de los **Request** recibe como primer argumento, la URL y como segundo, un objeto JSON con la configuración adicional:
 ```javascript
@@ -88,7 +88,7 @@ new Request(url: string, config: any)
 A continuación se muestra un ejemplo de una petición POST en a que se envía (*Content-Type*) información en formato JSON y la recibe teambién en ese formato (*Accept*).
 ```javascript
 var request = new Request('https://example.com/api/users', {
-	method: 'POST', 
+	method: 'POST',
 	body: JSON.stringify({nombre: 'Daniel', apellidos: 'Valiente'})
 	headers: new Headers({
 		  'Accept': 'application/json',
@@ -116,7 +116,7 @@ El objeto de configuración (**config**) del Request puede contener las siguient
 Nota: otra sintaxis alternativa de fetch es pasar un como primer argumento la url y como segundo un objeto JSON con la configuración. De este modo no se emplea explicitamente un objeto **Request**.
 ```javascript
 fetch('https://example.com/api/users', {
-	method: 'POST', 
+	method: 'POST',
 	body: JSON.stringify({nombre: 'Daniel', apellidos: 'Valiente'})
 	headers: new Headers({
 		  'Accept': 'application/json',
@@ -152,8 +152,8 @@ La interface Header puede recibir en su constructor un objeto JSON con las cabec
 Por otra parte, la interfaz presenta los siguientes métodos para leer/escribir y eliminar cabederas:
 - **set(name: string, value: string)** -> agrega una cabecera si no existía, de lo contrario la remmplaza.
 - **append(name: string, value: string)** -> agrega una cabecera si no existía, de lo contrario concatena el valor indicado.
-- **delete(name: string)** -> elimina una cabecera. 
-- **get(name: string)** -> retorna un string con el valor de la cabecera indicada. 
+- **delete(name: string)** -> elimina una cabecera.
+- **get(name: string)** -> retorna un string con el valor de la cabecera indicada.
 - **has(name: string)** -> retorna un booleano indicando si la cabecera indicada está incluida.
 - **keys()** -> retorna un iterator con los *nombres* de las cabeceras incluidas.
 - **values()** -> retorna un iterator con los *valores* de las cabeceras incluidas.
@@ -163,3 +163,32 @@ Por otra parte, la interfaz presenta los siguientes métodos para leer/escribir 
 ## clase URLSearchParams
 La clase URLSearchParams permite el trabajo con parámetros de tipo QueryString. En su constructor recibe un string con la URL con la que se quiere trabajar.
 
+El método entries() o directamente el propio objeto se puede recorrer con un bucle for...of donde cada elemento será un array con la clave en la posición 0 y el valor en la posición 1.
+```javascript
+  var params = new URLSearchParams('a=hola&b=adios');
+  for (var param of params) {
+      console.log(param[0], '->', param[1]);
+  }
+```
+
+Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la siguiente forma:
+```javascript
+  var params = new URLSearchParams('a=hola&b=adios');
+  for (const [key, value] of params) {
+      console.log(key, '->', value);
+  }
+```
+
+### Métodos
+- **append(name, value)** -> Agrega un parámetro con el nombre y valor indicado.
+- **set(name, value)** -> Establece o reemplaza si ya existe el valor del parámetro indicado.
+- **get(name)** -> Retorna el valor del pámetro indicado (si hubiera varios, solamente retorna el primero).
+- **has(name): boolean** -> Indica si el parámetro con el nombre indicado existe.
+- **delete(name)** -> Elimina el parámetro con el nombre indicado.
+- **forEach(callback)** -> Ejecuta la función sumistrada por cada uno de los parámetros contenidos. La estructura de dicha función debe ser *function(value, key)*.
+- **entries(): iterator** -> Retorna un iterador donde cada elemento será un array con la clave en la posición 0 y el valor en la posición 1.
+- **keys(): iterator** -> Retorna un iterador con las claves.
+- **values(): iterator** -> Retorna un iterador con los valores.
+- **getAll(name): string[]** -> Retorna un array de string con todos los valores del parámentro indicado.
+- **sort(): void** -> Ordena alfabeticamente por nombre los parámetros.
+- **toString()** -> Retorna un string con la queryString sin la '?'.
