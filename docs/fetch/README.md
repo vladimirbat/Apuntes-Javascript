@@ -29,8 +29,8 @@ fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/cliente
   .then(function(response) {
     return response.json();
   })
-  .then(function(myJson) {
-    console.log(myJson);
+  .then(function(data) {
+    console.log(data);
   });
 ```
 Este ejemplo se puede mejorar agregando la condición de que solamente si se ha obtenido una respuesta correcta 2XX, se analizará el body. Para ello se puede emplear el atributo **ok** de la respuesta.
@@ -42,8 +42,8 @@ Este ejemplo se puede mejorar agregando la condición de que solamente si se ha 
       }
       return response.json();
     })
-    .then(function(myJson) {
-      console.log(myJson);
+    .then(function(data) {
+      console.log(data);
     }).catch(() => {
       console.log('Se produjo un error');
     });
@@ -141,6 +141,22 @@ fetch('https://example.com/api/users', {
 	})
 }).then(function() { /* gestión de la respuesta */ });
 ```
+### Ejemplo de envío de un formulario empleando la clase FormData
+```javascript
+  const formData = new FormData(document.getElementById('formulario'));
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+  const config =  {
+      method: 'POST',
+      body: formData
+  };
+  fetch(url, config)
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(data) {
+          console.log(data);
+      });
+```
 ### Ejemplo de envío de un archivo
 ```javascript
 var formData = new FormData();
@@ -209,5 +225,8 @@ Empleando la deconstrucción de arrays de ES6, lo mismo se puede hacer de la sig
 - **getAll(name): string[]** -> Retorna un array de string con todos los valores del parámentro indicado.
 - **sort(): void** -> Ordena alfabeticamente por nombre los parámetros.
 - **toString(): string** -> Retorna un string con la queryString sin la '?'.
+
+## Enlaces de interés
+- [clase URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
 
 [Volver al índice de temas](../../README.md)

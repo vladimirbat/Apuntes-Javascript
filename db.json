@@ -8,6 +8,7 @@
     }
   ],
   "aplicacion": {
-    "name": "Apuntes Javascript"
+    "nombre": "Apuntes Javascript",
+    "descripcion": "Datos leidos por 'typicode.com' y que retorna en peticiones del tipo 'http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/clientes/1'"
   }
 }
