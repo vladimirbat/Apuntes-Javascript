@@ -33,7 +33,7 @@ fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/cliente
     console.log(myJson);
   });
 ```
-Este ejemplo se puede mejorar agregando la condición de si se ha obtenido una respuesta correcta 2XX, para ello se puede emplear el atributo ok de la respuesta.
+Este ejemplo se puede mejorar agregando la condición de que solamente si se ha obtenido una respuesta correcta 2XX, se analizará el body. Para ello se puede emplear el atributo **ok** de la respuesta.
 ```javascript
   fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/clientes/1')
     .then(function(response) {
