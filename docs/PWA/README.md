@@ -139,7 +139,106 @@ Tras la instalación (con el cacheo de nuevos recursos) llevada a cabo en el eve
 Desde el código de la apicación, se puede iniciar el proceso de lectura de una nueva versión del código del js del Service Worker mediante el método **update** del objeto **register**. Este método descarga de nuevo el js y lo compara con el que tiene en ejecución el Service Worker.
 
 ```javascript
-    navigator.serviceWorker.register('service-worker.js').then(registration => {
-        registration.update();
-    }
+navigator.serviceWorker.register('service-worker.js').then(registration => {
+    registration.update();
+}
+```
+
+### Código del ejemplo
+
+A continuación se muestra cómo podría ser el ejemplo completo que se ha ido trabajando en este tema.
+El HTML del index.html podría ser el siguiente:
+```html
+    <body>
+        <script>
+            var previousState = 'none';
+            var currentState = 'none';
+            var tempo;
+            function statusChageHandler(registration){
+                if(registration.installing) {
+                    currentState = registration.installing.state;
+                }
+                if (registration.waiting) {
+                    currentState = registration.waiting.state;
+                }
+                if (registration.active) {
+                    currentState = registration.active.state;
+                }
+                if(previousState !== currentState){
+                    console.log(currentState);
+                    previousState = currentState;
+                }
+            }
+            function registeredHandler(registration) {
+                console.log('parsed');
+                currentState = 'parsed';
+                statusChageHandler(registration);
+                registration.onupdatefound = function() {
+                    console.log('-------onupdatefound--------');
+                    statusChageHandler(registration);
+                };
+                tempo = setInterval(function() {
+                    statusChageHandler(registration);
+                    if (currentState === 'activated') {
+                        clearInterval(tempo);
+                    }
+                },50);
+                registration.update();
+            }
+            // A01 - Script to register the service worker goes here
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(registeredHandler)
+                .catch(err => console.error('Fallo en el registro:', err));
+
+                setTimeout(function (){
+                    console.log('MOSTRAR IMAGEN');
+                    var img = new Image();
+                    img.src = 'img/mapa1.jpg'
+                    img.style.width = '25vw';
+                    document.body.appendChild(img);
+                },3000);
+              });
+            }
+
+        </script>
+        <h2>Imágenes</h2>
+      </body>
+```
+
+Y el código del Service Worker (archivo service-worker.js):
+
+```javascript
+    var currentCacheName = 'NOMBRE_APP_CACHE';
+    var arrayOfFilesToCache = ['/styles/index.css', '/img/mapa2.png'];
+
+    self.addEventListener('install', event => {
+        console.log('EVENTO: install', self.registration.installing.state);
+        self.skipWaiting();
+        var t1 =  new Date().getTime();
+        event.waitUntil(
+            caches.open(currentCacheName).then(function(cache) {
+                return cache.addAll(arrayOfFilesToCache).then(() => {
+                    console.log('CACHEO TERMINADO EN', new Date().getTime() - t1, 'ms');
+                    return true;
+                });
+            })
+        );
+    });
+
+    self.addEventListener('activate', event => {
+        console.log('EVENTO: activate ', self.registration.active.state);
+        self.clients.claim();
+    });
+
+    self.addEventListener('fetch', event => {
+        const url = new URL(event.request.url);
+        console.log('EVENTO: fetch', url.pathname);
+        if (url.origin == location.origin && url.pathname == '/img/mapa1.jpg') {
+            event.respondWith(caches.match('/img/mapa2.png'));
+        }
+    });
+
+    console.log('CODIGO SERVICE WORKER LEIDO');
 ```
