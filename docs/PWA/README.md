@@ -154,6 +154,7 @@ El HTML del index.html podría ser el siguiente:
             var previousState = 'none';
             var currentState = 'none';
             var tempo;
+
             function statusChageHandler(registration){
                 if(registration.installing) {
                     currentState = registration.installing.state;
@@ -169,6 +170,7 @@ El HTML del index.html podría ser el siguiente:
                     previousState = currentState;
                 }
             }
+
             function registeredHandler(registration) {
                 console.log('parsed');
                 currentState = 'parsed';
@@ -185,7 +187,7 @@ El HTML del index.html podría ser el siguiente:
                 },50);
                 registration.update();
             }
-            // A01 - Script to register the service worker goes here
+
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js')
