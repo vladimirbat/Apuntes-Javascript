@@ -86,6 +86,8 @@ Un escenario más real sería si cacheamos un conjunto de archivos cuyos nombres
 
 Nota: recuerdese, que si la función pasada a un método *then* retorna un valor, entonces el método *then* retorna una nueva promesa que resuelve con dicho valor (concatenación de promesas).
 
+Para más detalle sobre el cacheo, consultar el tema [Caché API](../../cache/README.md).
+
 ## Activación de un Service Workers
 
 Una vez un Service Worker se ha instalado puede pasar a activarse siempre que no quede otro Service Worker (u otra versión del mismo), actuando sobre su mismo ambito (es decir, actuando sobre los mismos clientes). Los **clientes** son páginas, Workers o Workers compartidos cuyas peticiones *fetch* están siendo controladas por un Service Worker.
@@ -134,6 +136,8 @@ Tras la instalación (con el cacheo de nuevos recursos) llevada a cabo en el eve
     });
 ```
 **Nota**: durante el waitUntil los fetch de los clientes quedan en un buffer hasta que termine la activación.
+
+Para más detalle sobre el cacheo, consultar el tema [Caché API](../../cache/README.md).
 
 ### Actualización manual a una nueva versión del Service Worker
 Desde el código de la apicación, se puede iniciar el proceso de lectura de una nueva versión del código del js del Service Worker mediante el método **update** del objeto **register**. Este método descarga de nuevo el js y lo compara con el que tiene en ejecución el Service Worker.
@@ -245,35 +249,3 @@ Y el código del Service Worker (archivo service-worker.js):
     console.log('CODIGO SERVICE WORKER LEIDO');
 ```
 
-## Estrategia de responder caché y si no, red
-```javascript
-self.addEventListener('fetch', event => {
-    console.log('Fetch event for ', event.request.url);
-    event.respondWith(
-        caches.match(event.request)
-        .then(response => {
-            if (response) {
-                console.log('Found ', event.request.url, ' in cache');
-                return response;
-            }
-            console.log('Network request for ', event.request.url);
-            return fetch(event.request).then(response => {
-              if(response.status===404){
-                  return caches.open(staticCacheName).then(cache => {
-                      cache.get('/404.html')
-                  });
-              }
-              return caches.open(staticCacheName).then(cache => {
-                cache.put(event.request.url, response.clone());
-                return response;
-              });
-            });
-
-        }).catch(error => {
-
-            // TODO 6 - Respond with custom offline page
-
-        })
-    );
-});
-```

@@ -15,4 +15,89 @@ Representa un objeto de caché que contiene una colección de elementos cacheado
 La interface **CacheStorage** proporciona los métodos disponibles para manejar la caché de un dominio/puerto. El acceso al API se realiza mediante la variable global **caches**.
 
 - **open(key: string): Promise** -> La promesa resuelve con el objeto de la clase Cache asociado a la clave indicada.
-- **match(request: Request | string, options?: any): Promise** -> Busca el request indicado en cualquiera de las colecciones de los objetos de la clase Cache almacenados en el CacheStorage. La promesa resuelve con el objeto Response asociado a la clave indicada. 
+- **match(request: Request | string, options?: any): Promise** -> Busca el request indicado en cualquiera de las colecciones de los objetos de la clase Cache almacenados en el CacheStorage. La promesa resuelve con el objeto Response asociado a la clave indicada.
+
+## Instalación de un Service Worker que cachea archivos
+A continuación se muestra como podría ser el evento install de un Service Worker que cachea archivos estáticos que usa desde la aplicación.
+
+```javascript
+const NOMBRE_APP_CACHE = 'NOMBRE_APP_CACHE';
+
+const archivosCache = [
+    '/',
+    'style/main.css',
+    'images/still_life_medium.jpg',
+    'index.html',
+    'pages/offline.html',
+    'pages/404.html'
+];
+
+self.addEventListener('install', event => {
+    self.skipWaiting();
+    console.log('INSTALL: Guardar en caché');
+    event.waitUntil(
+        caches.open(NOMBRE_APP_CACHE).then(cache => {
+            return cache.addAll(archivosCache).then(() => {
+                console.log('Archivos cacheados')
+                return true;
+            });
+        })
+    );
+});
+```
+Nota: si no se quiere imprimir 'Archivos cacheados', se puede omitir el último then.
+
+## Eliminación de cachés antiguos
+Tras la instalación (con el cacheo de nuevos recursos) llevada a cabo en el evento *install*, se puede borrar los archivos cacheados que ya no van a ser empleados. Para ello se puede emplear en el evento **activate** el evento **waitUntil** para no terminar la activación hasta que no se hayan borrado todos los caches obsoletos. A continuación se muestra un ejemplo de como podría hacerse esto.
+
+```javascript
+    self.addEventListener('activate', event => {
+        event.waitUntil(
+            caches.keys().then(keys => Promise.all(
+                keys.map(key => {
+                    if (!archivosCache.includes(key)) {
+                      return caches.delete(key);
+                    }
+                })
+            )).then(() => {
+                self.clients.claim();
+                console.log('La versión 2 está lista para recibir peticiones (fetch)');
+                return true;
+            })
+        );
+    });
+```
+**Nota**: durante el waitUntil los fetch de los clientes quedan en un buffer hasta que termine la activación.
+
+## Gestión de peticiones fetch empleando caché
+
+```javascript
+
+self.addEventListener('fetch', event => {
+    console.log('Fetch event:', event.request.url);
+    event.respondWith(
+        caches.match(event.request)
+        .then(response => {
+            if (response) {
+                console.log('Encontrado', event.request.url, 'en caché');
+                return response;
+            }
+            console.log('Fetch respuesta:', event.request.url);
+            return fetch(event.request).then(response => {
+              if(response.status === 404){
+                  return caches.open(NOMBRE_APP_CACHE).then(cache => {
+                      return cache.match('pages/404.html');
+                  });
+              }
+              return caches.open(NOMBRE_APP_CACHE).then(cache => {
+                cache.put(event.request.url, response.clone());
+                return response;
+              });
+            });
+        }).catch(error => {
+            console.log('Error, ', error);
+            return caches.match('pages/offline.html');
+        })
+    );
+});
+```
