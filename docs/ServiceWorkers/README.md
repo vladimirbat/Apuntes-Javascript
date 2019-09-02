@@ -1,4 +1,4 @@
-# PWA
+# Service Workers
 ## Introduccción
 Los Service Workers son los elementos más importantes de una PWA y se caracterizan por:
 - Posibilidad de interceptar las peticiones fetch lanzadas desde la aplicación.
@@ -248,4 +248,3 @@ Y el código del Service Worker (archivo service-worker.js):
 
     console.log('CODIGO SERVICE WORKER LEIDO');
 ```
-
