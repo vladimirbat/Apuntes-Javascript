@@ -64,3 +64,39 @@ El html principal de la aplicación debe referenciar el archivo de manifest, as�
 <link rel="icon" sizes="512x512" href="/images/touch/icon-512x512.png">
 <link rel="apple-touch-icon" sizes="512x512" href="/images/touch/icon-512x512.png">
 ```
+
+## Botón personalizado de instalación de la PWA
+```javascript
+let deferredPrompt;
+// Evento previo a que se lance el cuadro de dialogo de instalación de la PWA
+window.addEventListener('beforeinstallprompt', event => {
+
+    // Evita que versiones anteriores a Chorme 67 muestren la opción de instalación automáticamente
+    event.preventDefault();
+
+    // Guarda el evento para luego
+    deferredPrompt = event;
+
+    // Evento click del botón para instalar la PWA
+    document.querySelector('#installBtn').addEventListener('click', event => {
+
+        // Muestra el cuadro de dialogo con el evento que habiamos guardado.
+        deferredPrompt.prompt();
+
+        // Se espera a la resolución de la promesa que indica que el usuario ha contestado
+        deferredPrompt.userChoice
+          .then((choiceResult) => {
+            // Mostramos en la consola si ha aceptado o no
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });
+    });
+
+  // Visualizamos el botón de instalación que inicialmente estaba oculto (display=none)
+  document.querySelector('#installBanner').style.display = 'flex';
+});
+```
