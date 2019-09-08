@@ -8,6 +8,7 @@ Apuntes del lenguaje Javascript y sus principales API
     * [Service Workers](./docs/ServiceWorkers/README.md)
     * [Caché API](./docs/cache/README.md)
     * [PWA instalable](./docs/InstallablePWA/README.md)
+4. [IndexedDB API](./docs/IndexedDB/README.md)
 
 
 ## Herramientas
