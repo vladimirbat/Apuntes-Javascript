@@ -1,3 +1,4 @@
+<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 # Apuntes-Javascript
 Apuntes del lenguaje Javascript y sus principales API
 
