@@ -20,3 +20,5 @@ Apuntes del lenguaje Javascript y sus principales API
 
 ## CSS
 1.- [Resumenes de CSS](./docs/css/README.md)
+## Responsive Web Design (RWD)
+1.- [Responsive Web Design (RWD)](./docs/responsive/README.md)
