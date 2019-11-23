@@ -18,6 +18,18 @@ Para aplicaciones en las que se usen dispositivos táctiles, el tamaño minimo d
 ## Layout
 
 ### Patrón Column Drop
+Con este patrón se pretende pasar de una distribución de cajas apiladas para los dispositivos más pequeños (mobile-first).
+
+![Columas apiladas](img/ColumnDrop_01.png)
+
+Y posteriormente para tamaños mayores ir poniendo las cajas en columnas segun se vayan pudiendo incluir.
+
+![Columas apiladas en la primera fila](img/ColumnDrop_02.png)
+
+Hasta llegar a que todas las cajas estén distribuidas en una única fila.
+
+![Columas apiladas](img/ColumnDrop_03.png)
+
 Estructura contenedor/bloques:
 ```html
     <div class="container">
