@@ -18,7 +18,6 @@ Apuntes del lenguaje Javascript y sus principales API
 ## Sass
 1.- [Variables en Sass](./docs/sass/variables_sass/README.md)
 
-## CSS
+## CSS y Responsive Web Design (RWD)
 1.- [Resumenes de CSS](./docs/css/README.md)
-## Responsive Web Design (RWD)
-1.- [Responsive Web Design (RWD)](./docs/responsive/README.md)
+2.- [Responsive Web Design (RWD)](./docs/responsive/README.md)
