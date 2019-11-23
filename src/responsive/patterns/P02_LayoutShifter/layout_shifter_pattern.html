@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout Shifter Pattern</title>
+    <style>
+        /* COMMON STYLES FOR LAYOUTS */
+        .container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+        .box {
+            width: 100%;
+            min-height: 100px;
+        }
+        .dark_blue {background-color: navy;}
+        .light_blue {background-color: dodgerblue;}
+        .green {background-color: darkgreen;}
+        .red {background-color: red;}
+
+        /* EL PRIMER BLOQUE Y EL CONTAINER 2 SE REPARTEN LA PRIMEREA FILA */
+        @media screen and (min-width: 500px) {
+            .dark_blue {width: 50%;}
+            #container2 {width: 50%;}
+        }
+        /* EL PRIMER y ULTIMO BLOQUE SE INTERCAMBIAN */
+        @media screen and (min-width: 650px) {
+            .dark_blue {
+                width: 25%;
+                order: 1;
+             }
+            .red {
+                width: 25%;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box dark_blue"></div>
+        <div class="container" id="container2">
+            <div class="box light_blue"></div>
+            <div class="box green"></div>
+        </div>
+        <div class="box red"></div>
+    </div>
+</body>
+</html>
