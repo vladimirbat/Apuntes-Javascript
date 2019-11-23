@@ -19,19 +19,11 @@ Para aplicaciones en las que se usen dispositivos táctiles, el tamaño minimo d
 
 ### Patrón Column Drop
 Con este patrón se pretende pasar de una distribución de cajas apiladas para los dispositivos más pequeños (mobile-first).
-
 ![Columas apiladas](img/ColumnDrop_01.png)
-
 Y posteriormente para tamaños mayores ir poniendo las cajas en columnas segun se vayan pudiendo incluir.
-
 ![Columas apiladas en la primera fila](img/ColumnDrop_02.png)
-
 Hasta llegar a que todas las cajas estén distribuidas en una única fila.
-
-
 ![Columas apiladas](img/ColumnDrop_03.png)
-
-
 Estructura contenedor/bloques:
 ```html
     <div class="container">
@@ -66,5 +58,18 @@ Cortes para dispositivos más anchos:
         .dark_blue {width: 25%;}
         .light_blue {width: 50%;}
         .green {width: 25%;}
+    }
+```
+### Patrón Mostly fluid
+Es una variante del caso anterior en el que van subiendo las cajas formando filas con diferentes distribuciónes. Se estructura también como un conjunto de div dentro de un container y mediante el porcentaje de sus anchos se van incluyendo en las correspondientes filas según el corte de la media query correspondiente.
+![Mostly Fluid](img/MostlyFluid_01.png)
+Para el último corte se fija el ancho del contendor y se le aplican margenes automáticos (para centralo).
+```css
+    /* ULTIMO CORTE DE MEDIA QUERY, SE FIJA EL ANCHO DEL CONTAINER */
+    @media screen and (min-width: 550px) {
+    .container {
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
     }
 ```
