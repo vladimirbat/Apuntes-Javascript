@@ -164,7 +164,7 @@ En el segundo corte se intercambian las posiciones del primer y último elemento
 ### Patrón Off Canvas
 Este patrón muestra el menú en la parte superior de la página para resoluciones grandes y para resoluciones pequeñas tiene el menú oculto (fuera del viewport) en el lado derecho (por ejemplo) y al pulsar el botón con tres rallas (popularmente llamado hamburguesa) dicho menú entra en el viewport para que el usuario seleccione una opción.
 
-![Off Canvas](img/OffCanvas_01.png)
+![Off Canvas](img/OffCanvas_01.png) ---> 
 ![Off Canvas](img/OffCanvas_02.png)
 
 A continuación se muestra el html de una cabecera (header) de la página con el icono de menú, el título de la página y el menú (etiqueta nav y su contenido)
