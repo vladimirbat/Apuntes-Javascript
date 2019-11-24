@@ -17,6 +17,18 @@ Para aplicaciones en las que se usen dispositivos táctiles, el tamaño minimo d
 
 ## Layout
 
+### Reset de elementos
+ A continuación se expone un reset básico de los elementos css, para obtener un más detallado visitar la propuesta del guro CSS [Eric Meyer](https://meyerweb.com/eric/tools/css/reset/). Con esto se evita la no homogeneidad de los valores por defecto de los navegadores.
+
+```css
+    body,  html { margin: 0; padding: 0; width: 100%; height: 100%;	}
+    body{line-height: 1;}
+    * { box-sizing: border-box; margin: 0;padding: 0;}
+    footer, header, hgroup, menu, nav, section { display: block;}
+    ol, ul { list-style: none;}
+    table {	border-collapse: collapse;border-spacing: 0;}
+```
+
 ### Patrón Column Drop
 Con este patrón se pretende pasar de una distribución de cajas apiladas para los dispositivos más pequeños (mobile-first).
 ![Columas apiladas](img/ColumnDrop_01.png)
@@ -132,6 +144,106 @@ En el segundo corte se intercambian las posiciones del primer y último elemento
         .red {
             width: 25%;
             order: -1;
+        }
+    }
+```
+### Patrón Off Canvas
+Este patrón muestra el menú en la parte superior de la página para resoluciones grandes y para resoluciones pequeñas tiene el menú oculto (fuera del viewport) en el lado derecho (por ejemplo) y al pulsar el botón con tres rallas (popularmente llamado hamburguesa) dicho menú entra en el viewport para que el usuario seleccione una opción. A continuación se muestra el html de una cabecera (header) de la página con el icono de menú, el título de la página y el menú (etiqueta nav y su contenido)
+```html
+        <header class="header">
+            <a id="openner" href="#">
+                <img src="img/menu.svg" alt="menú">
+            </a>
+            <h1 class="header__title"> Off canvas</h1>
+            <nav class="nav">
+              <ul class="nav__list">
+                <li class="nav__item"><a href="#">NOTICIAS</a></li>
+                <li class="nav__item"><a href="#">EVENTOS</a></li>
+                <li class="nav__item"><a href="#">CULTURA</a></li>
+                <li class="nav__item"><a href="#">BLOG</a></li>
+              </ul>
+            </nav>
+        </header>
+```
+En los estilos por defecto (mobile-first) es decir para resoluciones pequeñas, se configura el menú fuera del viewport, para ello se establece un posicionamieto absoluto con ubicado en la posición 0,0 de la página (o de la cabecera, si esta tuviera posicionamiento relativo). El efecto de que el menú esté oculto se consigue aplicandole una transformació de translación de 300px a su izquierda lo que sumado a que el ancho del menú es de 300px, este queda oculto (por estár fuera del view port)
+```css
+    h1 {
+        font-size: 2.5em;
+        margin: 0.5em 0.25em;
+        display: inline-block;
+    }
+    header { background-color: white;}
+    .nav {
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        transform: translate(-300px, 0);
+        transition: transform 0.3s ease;
+        background-color: #d1f542;
+    }
+    nav.open { transform: translate(0, 0);}
+    .nav__item {
+        width: 100%;
+        text-align: center;
+        padding: 1.5em;
+    }
+    .nav a {  text-decoration: none;}
+    .nav a:hover { font-weight: bolder;}
+```
+Para que el menú se muestre, al pulsar el hipervínculo de id="openner" (con el icono de menú), mediante el siguiente código JavaScript, se aplicará la clase de estilo "open" al menú (etiqueta nav), lo que hará que la transformación de translación pase a ser 0 en lugar de -300 y que por lo tanto el menú quede dentro del viewport (y por lo tanto visible).
+```javascript
+    window.onload = (ev) => {
+          document.getElementById('openner').onclick = (ev) => {
+              document.querySelector('nav').classList.toggle('open');
+          }
+          document.querySelector('nav').onclick = (ev) => {
+              document.querySelector('nav').classList.toggle('open');
+          }
+    }
+```
+Del mismo modo, se ha aplicado sobre el menú en su evento click la eliminación de la clase de estilo "open" para que el menú vuelva a estar oculto.
+
+Para las resoluciones mayores (en este caso a partir de 450px), el menú será visible siempre en la parte superior de la pantalla. Para ello se quita el posicionamiento absoluto del menú (etiqueta nav), se oculta el icono de menú y los elementos del menú se muestran en modo flexbox con distribución horizontal.
+```css
+@media screen and (min-width: 450px) {
+    .nav {
+        width: 100%;
+        transform: translate(0, 0);
+        position: relative;
+    }
+    #openner { display: none;}
+    .nav__list {
+        width: 100%;
+        display: flex;
+    }
+    .nav__item { width: 25%; }
+}
+```
+
+### Patrón Tiny Tweeks
+No es un patrón de layout sino un patrón de ajuste de los tamaños de los elementos tamaño de texto e imágenes. A continuación se muestra un ejemplo de una sola columna cuyo tamaño de texto va aumentando con el tamaño del dispositivo.
+```css
+    /* COMMON STYLES */
+    *{box-sizing: border-box; font-family: sans-serif;}
+    .container {
+        width: 100%;
+        padding: 10px;
+        background-color: khaki;
+        text-align: justify;
+    }
+    /* EL PRIMER CORTE DE INCREMENTO DE TAMAÑO DE TEXTO */
+    @media screen and (min-width: 600px) {
+        .container {
+            padding: 20px;
+            font-size: 1.5em;
+        }
+    }
+    /* SEGUNDO CORTE DE INCREMENTO DE TAMAÑO DE TEXTO */
+    @media screen and (min-width: 800px) {
+        .container {
+            padding: 40px;
+            font-size: 2em;
         }
     }
 ```

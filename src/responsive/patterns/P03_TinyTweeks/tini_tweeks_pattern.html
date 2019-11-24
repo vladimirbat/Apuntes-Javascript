@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout Shifter Pattern</title>
+    <style>
+        /* COMMON STYLES */
+        *{box-sizing: border-box; font-family: sans-serif;}
+        .container {
+            width: 100%;
+            padding: 10px;
+            background-color: khaki;
+            text-align: justify;
+        }
+        /* EL PRIMER BLOQUE Y EL CONTAINER 2 SE REPARTEN LA PRIMEREA FILA */
+        @media screen and (min-width: 600px) {
+            .container {
+                padding: 20px;
+                font-size: 1.5em;
+            }
+        }
+        /* EL PRIMER y ULTIMO BLOQUE SE INTERCAMBIAN */
+        @media screen and (min-width: 800px) {
+            .container {
+                padding: 40px;
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+</body>
+</html>
