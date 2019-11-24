@@ -16,7 +16,7 @@ Se recomienda establecer por defecto un ancho máximo a todas las imagenes y vid
 ## Consideraciones de diseño
 Para aplicaciones en las que se usen dispositivos táctiles, el tamaño minimo de los botones debe ser de 48px x 48px y el espacio mínimo entre botones de 40px.
 
-## Layout
+## Patrones de Layout (distribución)
 
 ### Reset de elementos
  A continuación se expone un reset básico de los elementos css, para obtener un más detallado visitar la propuesta del guro CSS [Eric Meyer](https://meyerweb.com/eric/tools/css/reset/). Con esto se evita la no homogeneidad de los valores por defecto de los navegadores.
@@ -164,7 +164,7 @@ En el segundo corte se intercambian las posiciones del primer y último elemento
 ### Patrón Off Canvas
 Este patrón muestra el menú en la parte superior de la página para resoluciones grandes y para resoluciones pequeñas tiene el menú oculto (fuera del viewport) en el lado derecho (por ejemplo) y al pulsar el botón con tres rallas (popularmente llamado hamburguesa) dicho menú entra en el viewport para que el usuario seleccione una opción.
 
-![Off Canvas](img/OffCanvas_01.png) ---> 
+![Off Canvas](img/OffCanvas_01.png) --->
 ![Off Canvas](img/OffCanvas_02.png)
 
 A continuación se muestra el html de una cabecera (header) de la página con el icono de menú, el título de la página y el menú (etiqueta nav y su contenido)
@@ -243,7 +243,7 @@ Para ello se quita el posicionamiento absoluto del menú (etiqueta nav), se ocul
     .nav__item { width: 25%; }
 }
 ```
-
+## Otros patrones y factores relativos al escalado
 ### Patrón Tiny Tweeks
 No es un patrón de layout sino un patrón de ajuste de los tamaños de los elementos tamaño de texto e imágenes. A continuación se muestra un ejemplo de una sola columna cuyo tamaño de texto va aumentando con el tamaño del dispositivo.
 ```css
@@ -270,3 +270,18 @@ No es un patrón de layout sino un patrón de ajuste de los tamaños de los elem
         }
     }
 ```
+
+### Uso de unidades ***em*** y ***rem***
+
+- Las unidades **rem** y **em** se tranforman, por el navegador, en píxeles  en función de los tamaños de fuente en su diseño.
+- Las unidades **em** se basan en el tamaño de fuente del elemento en el que se usan.
+- las unidades **rem** se basan en el tamaño de fuente del elemento ***html***.
+- Las unidades **em** pueden verse influidas por la herencia del tamaño de fuente de cualquier elemento padre
+
+- Las unidades **rem** pueden verse influidas por la herencia del tamaño de fuente de la configuración del navegador.
+- Se debe usar unidades **em** para dimensionamientos que deberían escalar dependiendo del tamaño de fuente de un elemento que no sea el raíz.
+- Se usarán unidades **rem** para proporciona tamaños que deberían escalarse según la configuración del tamaño de fuente del navegador.
+- Se debe usar unidades **rem** a menos que se esté seguro de que se necesitan unidades **em**, incluso en tamaños de fuente.
+- Se debe usar unidades **rem** en media queries que dependan del tamaño de las fuerntes.
+- No se debe usar  **em** o **rem** en anchos de diseño de varias columnas. En ese caso se deben usar unidades %.
+- No se deben usar  **em** o **rem** si la escala inevitablemente ocasionaría la rotura del diseño del elemento.
