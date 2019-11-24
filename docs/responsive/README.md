@@ -1,5 +1,6 @@
 # Responsive Web Design (RDW)
 ## Curso recomendado (gratuito)
+
 [Udacity - Responsive Web Design Fundamentals](https://www.udacity.com/course/responsive-web-design-fundamentals--ud893)
 
 ## Viewport, hardware width, device independent width
@@ -31,11 +32,17 @@ Para aplicaciones en las que se usen dispositivos táctiles, el tamaño minimo d
 
 ### Patrón Column Drop
 Con este patrón se pretende pasar de una distribución de cajas apiladas para los dispositivos más pequeños (mobile-first).
+
 ![Columas apiladas](img/ColumnDrop_01.png)
+
 Y posteriormente para tamaños mayores ir poniendo las cajas en columnas segun se vayan pudiendo incluir.
+
 ![Columas apiladas en la primera fila](img/ColumnDrop_02.png)
+
 Hasta llegar a que todas las cajas estén distribuidas en una única fila.
+
 ![Columas apiladas](img/ColumnDrop_03.png)
+
 Estructura contenedor/bloques:
 ```html
     <div class="container">
@@ -74,7 +81,9 @@ Cortes para dispositivos más anchos:
 ```
 ### Patrón Mostly fluid
 Es una variante del caso anterior en el que van subiendo las cajas formando filas con diferentes distribuciónes. Se estructura también como un conjunto de div dentro de un container y mediante el porcentaje de sus anchos se van incluyendo en las correspondientes filas según el corte de la media query correspondiente.
+
 ![Mostly Fluid](img/MostlyFluid_01.png)
+
 Para el último corte se fija el ancho del contendor y se le aplican margenes automáticos (para centralo).
 ```css
     /* ULTIMO CORTE DE MEDIA QUERY, SE FIJA EL ANCHO DEL CONTAINER */
@@ -90,10 +99,15 @@ Este patrón según va creciendo el tamaño de la pantalla va moviendo las cajas
 - Contenedores anidados: puede haber dos cajas una encima de otra compartiendo fila con otra que tiene toda la altura.
 - El orden de las cajas puede cambiar: mediante el uso de la propiedad order de los elementos de un flexbox, se puede cambiar la posición en la que aparecen según el tamaño del dispositivo.
 En este ejemplo se parte de una distribución de una sola columna acorde con mobile-first.
+
 ![Layout Shfiter Mobile First](img/LayoutShifter_01.png)
+
 Tras el primer corte se ve como una fila tiene en una de sus columnas dos subfilas.
+
 ![Layout Shfiter fila con subfilas](img/LayoutShifter_02.png)
+
 En el último tramo (no necesariamente en el último tramo) se han intercambiado posiciones de elementos (azul oscuro y rojo).
+
 ![Layout Shfiter cambio de orden de elementos](img/LayoutShifter_03.png)
 
 Para llevar a cabo este ejemplo se crea un contendor grupado cuyos elementos estarán dentro de dicho contenedor siempre en una sola columna, pues dichos elementos siempre tienen un ancho del 100%.
@@ -148,7 +162,12 @@ En el segundo corte se intercambian las posiciones del primer y último elemento
     }
 ```
 ### Patrón Off Canvas
-Este patrón muestra el menú en la parte superior de la página para resoluciones grandes y para resoluciones pequeñas tiene el menú oculto (fuera del viewport) en el lado derecho (por ejemplo) y al pulsar el botón con tres rallas (popularmente llamado hamburguesa) dicho menú entra en el viewport para que el usuario seleccione una opción. A continuación se muestra el html de una cabecera (header) de la página con el icono de menú, el título de la página y el menú (etiqueta nav y su contenido)
+Este patrón muestra el menú en la parte superior de la página para resoluciones grandes y para resoluciones pequeñas tiene el menú oculto (fuera del viewport) en el lado derecho (por ejemplo) y al pulsar el botón con tres rallas (popularmente llamado hamburguesa) dicho menú entra en el viewport para que el usuario seleccione una opción.
+
+![Off Canvas](img/OffCanvas_01.png)
+![Off Canvas](img/OffCanvas_02.png)
+
+A continuación se muestra el html de una cabecera (header) de la página con el icono de menú, el título de la página y el menú (etiqueta nav y su contenido)
 ```html
         <header class="header">
             <a id="openner" href="#">
@@ -204,7 +223,11 @@ Para que el menú se muestre, al pulsar el hipervínculo de id="openner" (con el
 ```
 Del mismo modo, se ha aplicado sobre el menú en su evento click la eliminación de la clase de estilo "open" para que el menú vuelva a estar oculto.
 
-Para las resoluciones mayores (en este caso a partir de 450px), el menú será visible siempre en la parte superior de la pantalla. Para ello se quita el posicionamiento absoluto del menú (etiqueta nav), se oculta el icono de menú y los elementos del menú se muestran en modo flexbox con distribución horizontal.
+Para las resoluciones mayores (en este caso a partir de 450px), el menú será visible siempre en la parte superior de la pantalla.
+
+![Off Canvas](img/OffCanvas_03.png)
+
+Para ello se quita el posicionamiento absoluto del menú (etiqueta nav), se oculta el icono de menú y los elementos del menú se muestran en modo flexbox con distribución horizontal.
 ```css
 @media screen and (min-width: 450px) {
     .nav {
