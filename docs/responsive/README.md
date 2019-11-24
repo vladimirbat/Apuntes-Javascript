@@ -273,10 +273,14 @@ No es un patrón de layout sino un patrón de ajuste de los tamaños de los elem
 
 ### Uso de unidades ***em*** y ***rem***
 
+Para profundizar más en el uso adecuado de estas dos unidades, se recomienda visitar la siguiente página.
+
+[Comprehensive Guide: When to Use Em vs. Rem](https://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984)
+
 - Las unidades **rem** y **em** se tranforman, por el navegador, en píxeles  en función de los tamaños de fuente en su diseño.
 - Las unidades **em** se basan en el tamaño de fuente del elemento en el que se usan.
 - las unidades **rem** se basan en el tamaño de fuente del elemento ***html***.
-- Las unidades **em** pueden verse influidas por la herencia del tamaño de fuente de cualquier elemento padre
+- Las unidades **em** pueden verse influidas por la herencia del tamaño de fuente de cualquier elemento padre.
 
 - Las unidades **rem** pueden verse influidas por la herencia del tamaño de fuente de la configuración del navegador.
 - Se debe usar unidades **em** para dimensionamientos que deberían escalar dependiendo del tamaño de fuente de un elemento que no sea el raíz.
