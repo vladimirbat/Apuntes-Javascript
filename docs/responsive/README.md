@@ -212,14 +212,14 @@ En los estilos por defecto (mobile-first) es decir para resoluciones pequeñas, 
 ```
 Para que el menú se muestre, al pulsar el hipervínculo de id="openner" (con el icono de menú), mediante el siguiente código JavaScript, se aplicará la clase de estilo "open" al menú (etiqueta nav), lo que hará que la transformación de translación pase a ser 0 en lugar de -300 y que por lo tanto el menú quede dentro del viewport (y por lo tanto visible).
 ```javascript
-    window.onload = (ev) => {
-          document.getElementById('openner').onclick = (ev) => {
-              document.querySelector('nav').classList.toggle('open');
-          }
-          document.querySelector('nav').onclick = (ev) => {
-              document.querySelector('nav').classList.toggle('open');
-          }
-    }
+    document.addEventListener('DOMContentLoaded', (ev) => {
+        document.getElementById('openner').addEventListener('click', (ev) => {
+            document.querySelector('nav').classList.toggle('open');
+        });
+        document.querySelector('nav').addEventListener('click', (ev) => {
+            document.querySelector('nav').classList.toggle('open');
+        });
+    });
 ```
 Del mismo modo, se ha aplicado sobre el menú en su evento click la eliminación de la clase de estilo "open" para que el menú vuelva a estar oculto.
 
