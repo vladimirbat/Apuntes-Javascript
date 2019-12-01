@@ -1,6 +1,8 @@
 # Critical Render Path (CRP
 El camino crítico de renderizado es el conjunto de tareas que realiza el navegador desde que se realiza la solicitud del html de una página, hasta que esta es renderizada (convertida a pixels). En este camino crítico intervienen los scripts y css que haya en la página bien inline o referenciados en archios externos (que se deberán descargar también).
 
+![Fases CRP](./img/CRP_Phases.png)
+
 Los conceptos de todo esto se pueden estudiar e esta parte de la documentación de Google Developers:
 [Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)
 y en el curso gratuito de Udacity del mismo autor:
@@ -23,6 +25,8 @@ En este ejemplo, si el ancho del viewport es de 500px, aunque se descargan todas
 
 ## CRP y JavaScript
 Si el navegador encuentra JavaScript en su lectura del HTML, detiene su construcción del DOM, ejecuta el JS y luego continua con la construcción del DOM.
+
+![HTML, CSS y JS](./img/GetHTMLAndCSSAndJS.png)
 
 Si el JavaScript está incluido en línea (dentro de la etiqueta \<script>), se ejecuta inmediatamente y el proceso puede ser relativamente rápido. Pero si el JavaScript está siendo referenciado por el atributo *src* de la etiqueta \<script>, entonces se debe descargar el archivo con el código para poder ejecutarlo y luego seguir construyendo el DOM.
 
