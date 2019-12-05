@@ -11,7 +11,7 @@ Apuntes del lenguaje Javascript y sus principales API
     * [PWA instalable](./docs/InstallablePWA/README.md)
 4. [IndexedDB API](./docs/IndexedDB/README.md)
 5. [Etiquetas de Video y Audio](./docs/video_y_audio/REDAME.md)
-
+6. [Formularios web](./docs/formularios/README.md)
 ## Herramientas
 1. [Atom](./docs/atom/README.md)
 
