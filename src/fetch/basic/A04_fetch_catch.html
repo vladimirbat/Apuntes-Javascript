@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fetch basico</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event){
+          fetch('http://my-json-server.typicode.com/vladimirbat/Apuntes-Javascript/clientes/1').then((response) => {
+              console.log('Hubo respuesta: ', response.status);
+              if(!response.ok){
+                console.log('Hubo respuesta, pero no fue 200');
+                throw new Error(response.statusText);
+              }
+              return response.json();
+          }).then((data) => {
+              console.log(data);
+          }).catch((err) => {
+              console.log('No se puedo conectar: ', err.message);
+          });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

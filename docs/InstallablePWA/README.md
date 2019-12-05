@@ -100,3 +100,7 @@ window.addEventListener('beforeinstallprompt', event => {
   document.querySelector('#installBanner').style.display = 'flex';
 });
 ```
+
+
+
+[Volver al índice de temas](../../README.md)

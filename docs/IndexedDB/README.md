@@ -83,5 +83,8 @@ function openUpgrade(event) {
 ```
 
 No se agregan breaks para que se ejecuten todos los pasos para actualizar desde la versión antigua a la actual.
-
+```javascript
 openRequest.addEventListener('upgradeneeded', openUpgrade);
+```
+
+[Volver al índice de temas](../../README.md)
