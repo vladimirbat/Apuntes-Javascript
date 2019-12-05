@@ -23,7 +23,7 @@ Si se consulta la sección *Application* de las DevTools del navegador, seleccio
 ![alt text](./img/ServiceWorker_01_InitialStartup.png "Service Worker iniciado")
 
 - Si la promesa que retorna el método *register* se rechaza (se ejecuta el catch), entonces significa que o el js no se ha encontrado (404), o su sintaxis era incorrecta o se ha producido una excepción en su ejecución. Por tanto el Service Worker no se habrá instalado (no habrá llegado al estado *installed*).
-- Si la promesa que retorna el método *register* se resuelve (se ejecuta el then), entonces significa que el js se ha leido correctamente y justo des pués se inciará la fase de instalación. Por lo que se lanzará el evento **install** del objeto de la clase ServiceWorkerGlobalScope (desarrollado en el siguiente apartado) accesible mediante la variable **self** desde dentro del js del Service Worker.
+- Si la promesa que retorna el método *register* se resuelve (se ejecuta el then), entonces significa que el js se ha leido correctamente y justo después se inciará la fase de instalación. Por lo que se lanzará el evento **install** del objeto de la clase ServiceWorkerGlobalScope (desarrollado en el siguiente apartado) accesible mediante la variable **self** desde dentro del js del Service Worker.
 
 ## clase ServiceWorkerGlobalScope
 En el archivo js del Service Worker, se puede acceder mediante la variable ***self*** a un objeto de la clase **ServiceWorkerGlobalScope** que a su vez permite acceder a las propiedades, métodos i eventos del ServiceWorker que se está ejecutando.
@@ -40,7 +40,7 @@ En el archivo js del Service Worker, se puede acceder mediante la variable ***se
 
 | Método        | Descripción                                            |
 | ------------- | -------------------------------------------------------|
-| skipWaiting() | Permite que el ServiceWorker no quede esperando en el estado **installed** y pase al estado **active**. |
+| skipWaiting() | Permite indicar que el ServiceWorker no quede esperando en el estado **installed** y pase al estado **active**. |
 | fetch         | Permite permite al propio Service Worker realizar peticiones http |
 
 
@@ -53,12 +53,12 @@ En el archivo js del Service Worker, se puede acceder mediante la variable ***se
 | fetch                  | Cada vez que desde la aplicación monitorizada se lanza un *fetch* |
 | message                | Se ejecuta cuando ser recibe un mensaje desde la aplicación, enviado con el método **postMessage**, se puede responder con otro *postMessage* desde **event.data.port** |
 | push                   | Cuando se recibe una notificación *push* del servidor. |
-| pushsubscriptionchange | Cuando se va invalidar la suscripción a una notificación push (por ejemplo porque se ha alcanzado el tiempo de expiración) |
+| pushsubscriptionchange | Cuando se va a invalidar la suscripción a una notificación push (por ejemplo porque se ha alcanzado el tiempo de expiración) |
 
 
 ## Instalación de un Service Worker
 
-La instalación de un Service Worker es la fase en la que se pueden cachear los archivos de la aplicación. El inicio de esta fase biene dado por el estado **installing** y por la ejecución del evento **install**. Para indicar cuando la instalación ha terminado (es decir, cuando el cacheo ha terminado), se emplea el método **waitUntil** del objeto *event* recibido. Ese método recibirá una promesa como argumento, cuando esa promesa se resuelva, el Service Worker se dará por installado y pasará al estado **installed/waiting**.
+La instalación de un Service Worker es la fase en la que se pueden cachear los archivos de la aplicación. El inicio de esta fase viene dado por el estado **installing** y por la ejecución del evento **install**. Para indicar cuando la instalación ha terminado (es decir, cuando el cacheo ha terminado), se emplea el método **waitUntil** del objeto *event* recibido. Ese método recibirá una promesa como argumento, cuando esa promesa se resuelva, el Service Worker se dará por installado y pasará al estado **installed/waiting**.
 
 En el siguiente ejemplo, la instalación sería instantanea.
 
@@ -88,7 +88,7 @@ Nota: recuerdese, que si la función pasada a un método *then* retorna un valor
 
 Para más detalle sobre el cacheo, consultar el tema [Caché API](../../cache/README.md).
 
-## Activación de un Service Workers
+## Activación de un Service Worker
 
 Una vez un Service Worker se ha instalado puede pasar a activarse siempre que no quede otro Service Worker (u otra versión del mismo), actuando sobre su mismo ambito (es decir, actuando sobre los mismos clientes). Los **clientes** son páginas, Workers o Workers compartidos cuyas peticiones *fetch* están siendo controladas por un Service Worker.
 
@@ -101,7 +101,7 @@ Si se desea que el Service Worker tenga el control de los clientes de su ambito,
     self.clients.claim();
 ```
 Esto tiene dos posibles aplicaciones:
-- Que el Service Worker tenga el control desde el principio (una vez que se ha activado el Service Worker), incluso aunque sea la primera carga.
+- Que el Service Worker tenga el control desde el principio (una vez que se ha activado el Service Worker), incluso aunque sea la primera vez que se carga la página.
 - Si se ha instalado una actualización, que el nuevo Service Worker tome el control de todos los clientes del ambito.
 
 ## Actualización de versiones del Service Workers
@@ -245,6 +245,17 @@ Y el código del Service Worker (archivo service-worker.js):
             event.respondWith(caches.match('/img/mapa2.png'));
         }
     });
-
     console.log('CODIGO SERVICE WORKER LEIDO');
 ```
+
+## Especificar el scope de un ServiceWorker
+El método **register** para registrar un serviceworker tiene un segundo parámetro que recibe un objeto de configuración. En la propiedad **scope** de ese objeto, se puede indicar el ambito en el que actuará dicho service worker, de modo que dicho ambito no vendrá no vendrá dado por la ubicación del JS del ServiceWorker.
+
+```javascript
+    navigator.serviceWorker.register('service-worker.js', {
+      scope: './controlled'
+    });
+```
+
+
+[Volver al índice de temas](../../README.md)

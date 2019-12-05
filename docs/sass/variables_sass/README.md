@@ -58,7 +58,7 @@ Como se puede ver en el ejemplo, el archivo style.scss da valor a las variables 
 
 Las variables globales (declaradas/asignadas fuera de cualquier bloque, normalmente delimitado con llaves {}) son visibles desde cualquier parte del documento, siempre que acceda a ellas en un punto posterior del documento sass.
 
-Las variables locales (declaradas/asignadas dentro de un bloque, normalmente delimitado con llaves {}) son visibles solamente dentro del bloque en el que están declaradas/asignadas. Ejemplo: 
+Las variables locales (declaradas/asignadas dentro de un bloque, normalmente delimitado con llaves {}) son visibles solamente dentro del bloque en el que están declaradas/asignadas. Ejemplo:
 ```scss
     $global-variable: global value;
     .content {
@@ -94,3 +94,6 @@ Posteriormente se puede acceder al valor de una de las claves de la variable de 
         background-color: map-get($theme-colors, "warning");
     }
 ```
+
+
+[Volver al índice de temas](../../../README.md)
