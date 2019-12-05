@@ -16,17 +16,18 @@ El DOM mantiene en todo momento la estructura de objetos que son visualizados en
 Todo script JavaScript ejecutado en un navegador tiene acceso a la variable de ambito global **document**. Esta variable es el punto de acceso para lectura y modificación del DOM.
 
 ## Eventos del DOM
-Los eventos permiten detectar circunstancias acontecidas en el navegador cómo la carga del documento, acciones de ratón o de teclado iniciadas por el usuario. Desde JavaScript, se pueden detectar estos eventos e indicar qué tareas se deben ejecutar cuando estos eventos se produzcan. Para ello, a cada elemento se le pueden asignar una o varias funciones (handlers o manejadores) que se ejecutarán asociadas a un evento.
+Los eventos permiten detectar circunstancias acontecidas en el navegador, cómo la carga del documento, acciones de ratón o de teclado iniciadas por el usuario. Desde JavaScript, se pueden detectar estos eventos e indicar qué tareas (*funciones manejadoras de evento*) se deben ejecutar cuando estos eventos se produzcan. Para ello, a cada elemento se le pueden asignar una o varias funciones (handlers o manejadores) que se ejecutarán asociadas a un evento.
 
-Para asociar un handler a un elemento, además de una referencia al elemeno, se debe indicar el tipo de evento al cual asociar la función de respuesta al evento (handler).
+Para asociar un handler a un elemento, además de una referencia al elemeno, se debe indicar, mediante el método **addEventListener**, el tipo de evento al cual asociar la función de respuesta al evento (handler).
 
-Por ejemplo para detectar en qué momento el documento HTML ha sido cargado y parseado, estándo ya el DOM disponible, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Para asignar un evento a un elemento del DOM se emplea el método addEventListener:
+Por ejemplo, para detectar en qué momento el documento HTML ha sido descargado y parseado, se dispone del evento de tipo ***DOMContentLoaded*** del objeto ***document***. Este evento indica que se ha terminado de crear el DOM y está disponible para ser accedido. Para ejecutar código en respuesta a este evento se ejetucará:
 
 ```javascript
     document.addEventListener('DOMContentLoaded', function(event){
 
     });
 ```
+El método *addEventListener* del permite suministrar una función (*callback*) que se ejecutará cuando se produzca un evento (en este caso el *DOMContentLoaded*)
 
 Este evento (DOMContentLoaded) es muy importante por que determina el instante a partir del cual podemos acceder a los elementos del DOM para manipularlos (como se indica más delante) o añadirles eventos.
 
