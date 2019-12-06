@@ -1,11 +1,11 @@
-const version = 'V1'
+const version = 'V1';
 const currentCacheName = `MI_CACHE_${version}`;
 const archivosCache = ['/styles/index.css', '/img/mapa2.png'];
 
 self.addEventListener('install', event => {
     console.log('EVENTO: install', self.registration.installing.state, version);
     // Permitir que esta versión del ServiceWorker se active inmediatamente aunque haya otra versión cargada.
-    // self.skipWaiting();
+    self.skipWaiting();
     event.waitUntil(
         caches.open(currentCacheName).then(function(cache) {
             return cache.addAll(archivosCache);
@@ -15,7 +15,22 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
     console.log('EVENTO: activate ', self.registration.active.state, version);
+    // Permite que todas las pestañas, no necesiten recargarse para recibir esta versión.
     self.clients.claim();
+
+    event.waitUntil(
+        caches.keys().then(keys => Promise.all(
+            keys.map(key => {
+                if (!archivosCache.includes(key)) {
+                  return caches.delete(key);
+                }
+            })
+        )).then(() => {
+            self.clients.claim();
+            console.log('La versión 2 está lista para recibir peticiones (fetch)');
+        })
+    );
+
 });
 
 self.addEventListener('fetch', event => {
