@@ -19,7 +19,7 @@ Los Service Workers son los elementos más importantes de una PWA y se caracteri
 ![Cliclo de vida de los ServiceWorkers](./img/ServiceWorker_diagrama.png)
 
 ## Registro (parseo) de un Service Worker
-Los service worker se declaran en un archivo js separado y en el lugar del árbol de archivos superior de la rama en la que se quiera que este tenga efecto (si se desea que sea aplicable a toda la aplicación, entonces se debe crear el archivo en el directorio raiz de esta). En el siguiente ejemplo se crea un archivo *service-worker.js* inicialmente vacio. En un script del *index.html* se lanzará el proceso de registro del Service Worker de la siguiente manera.
+Los service worker se declaran en un archivo js separado y en la posición superior del árbol de archivos en la que se quiera que este tenga efecto (si se desea que sea aplicable a toda la aplicación, entonces se debe crear el archivo en el directorio raiz de esta). En el siguiente ejemplo se crea un archivo *service-worker.js* inicialmente vacio. En un \<script> del *index.html* se lanzará el proceso de registro del Service Worker de la siguiente manera.
 
 ```javascript
 if ('serviceWorker' in navigator) {
@@ -30,7 +30,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 ```
-Si se consulta la sección *Application* de las DevTools del navegador, seleccionando el elemento de *Service Workers*, se puede ver que el Service Worker está activo y en ejecución (aunque de momento no esté ejecutando ningún código porque su js está vacio).
+Si se consulta la sección *Application* de las *DevTools* del navegador, seleccionando el elemento de *Service Workers*, se puede ver que el Service Worker está activo y en ejecución (aunque de momento no esté ejecutando ningún código porque su js está vacio).
 
 ![alt text](./img/ServiceWorker_01_InitialStartup.png "Service Worker iniciado")
 
