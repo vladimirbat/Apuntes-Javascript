@@ -30,8 +30,25 @@ Si el navegador encuentra JavaScript en su lectura del HTML, detiene su construc
 
 Si el JavaScript está incluido en línea (dentro de la etiqueta \<script>), se ejecuta inmediatamente y el proceso puede ser relativamente rápido. Pero si el JavaScript está siendo referenciado por el atributo *src* de la etiqueta \<script>, entonces se debe descargar el archivo con el código para poder ejecutarlo y luego seguir construyendo el DOM.
 
+![carga de un script sin atributos](./img/script-sin-atributos.svg)
+
 > *Las etiquetas \<script src="">, por defecto, impactan directamente en el CRP.*
 
-Los scripts que no modifican ni el dom ni los estilos iniciales deberían ser cargados en diferido para sacar su carga del CRP.
+Los scripts que no modifican ni el DOM ni los estilos iniciales deberían ser cargados en diferido para sacar su carga del CRP.
 
-La atributo **async** de la etiqueta \<script src=""> indica al navegador que haga la petición de ese script, pero que no bloquee ni la construcción del DOM ni la del CSSOM, por lo que el CRP no se verá afectado por ese script.
+La atributo **async** de la etiqueta \<script src=""> indica al navegador que haga la petición de ese script en paralelo y que su descarga no bloquee el parseo y construcción del DOM. Cuando la descarga haya terminado, entonces sí se detendrá la construcción del DOM y se ejecutará el contenido del JS descargado. Este atributo no garantiza el orden en el que se ejecutarán los scripts.
+
+![carga de un script sin atributos](./img/script-async.svg)
+
+
+El atributo **defer** en la etiqueta \<script src=""> implia que el sdript se descarga en paralelo y que no se descargue hasta que no se haya construido. Este atributo garantiza que todos los defer se ejecutan en el orden que se han insertado den el documento.
+
+![carga de un script sin atributos](./img/script-defer.svg)
+
+Por lo tanto el proceso de decisión debería ser el siguiente:
+
+![carga de un script sin atributos](./img/eleccion-script.svg)
+
+
+
+[Volver al índice de temas](../../README.md)

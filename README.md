@@ -22,6 +22,8 @@ Apuntes del lenguaje Javascript y sus principales API
 1. [Resumenes de CSS](./docs/css/README.md)
 2. [Responsive Web Design (RWD)](./docs/responsive/README.md)
 3. [Responsive images](./docs/responsive_images/REAME.md)
+5. [Touch events](./docs/touch_events/REAME.md)
+
 ## Rendimiento
 1. [Critical Render Path (CRP)](./docs/CRP/README.md)
 ## Accesibilidad
