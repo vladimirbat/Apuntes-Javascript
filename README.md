@@ -25,4 +25,4 @@ Apuntes del lenguaje Javascript y sus principales API
 ## Rendimiento
 1. [Critical Render Path (CRP)](./docs/CRP/README.md)
 ## Accesibilidad
-1.- [Conceptos básicos de Accesibilidad](./docs/accesibilidad/README.md)
+1. [Conceptos básicos de Accesibilidad](./docs/accesibilidad/README.md)
