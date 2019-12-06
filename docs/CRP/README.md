@@ -47,8 +47,17 @@ El atributo **defer** en la etiqueta \<script src=""> implia que el sdript se de
 
 Por lo tanto el proceso de decisión debería ser el siguiente:
 
-![carga de un script sin atributos](./img/eleccion-script.svg)
+![carga de un script sin atributos](./img/eleccion-script.png)
 
+Fuente de imagenes: [somostechies.com](https://somostechies.com/async-vs-defer/).
 
+##Precarga y preconexión de JS y CSS
+El la cabecera del documento HTML, se puede indicar mediante enlaces link que precargue hojas de estilo, scripts y fuentes.
+
+```html
+    <link rel="preload" as="script" href="super-important.js" />
+    <link rel="preload" as="style" href="critical.css" />
+    <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="myfont.woff2" />
+```
 
 [Volver al índice de temas](../../README.md)
