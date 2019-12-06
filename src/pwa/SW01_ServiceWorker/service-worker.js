@@ -4,6 +4,7 @@ const archivosCache = ['/styles/index.css', '/img/mapa2.png'];
 
 self.addEventListener('install', event => {
     console.log('EVENTO: install', self.registration.installing.state, version);
+    // Permitir que esta versión del ServiceWorker se active inmediatamente aunque haya otra versión cargada.
     // self.skipWaiting();
     event.waitUntil(
         caches.open(currentCacheName).then(function(cache) {
@@ -14,7 +15,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
     console.log('EVENTO: activate ', self.registration.active.state, version);
-    // self.clients.claim();
+    self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {

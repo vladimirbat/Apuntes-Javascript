@@ -8,15 +8,15 @@ Los Service Workers son los elementos más importantes de una PWA y se caracteri
 
 ## Consideraciones iniciales
 
-- El evento **install** es el primero que obtiene un ServiceWorker y solo sucede una vez.
-- El método **installEvent.waitUntil()** recibe una promesa como argumento. Esa promesa se resolverá cuando las tareas que se quieran incluir (por ejemplo cachear recursos) en la instalacción hayan terminado correctamente o fracasado.
-- Un ServiceWorker no recibirá eventos **fetch** ni **push** hasta haya instalado correctamente y su estado sea **activo**.
+- El evento **install** es el primero que obtiene un ServiceWorker y solo sucede una vez para esa vesión del ServiceWorker (hasta que no se modifique el archivo JavaScript en el que está el ServiceWorker, no se volverá a lanzar).
+- El método **installEvent.waitUntil()** recibe una promesa como argumento. Esa promesa se resolverá cuando las tareas que se quieran incluir (por ejemplo cachear recursos) en la instalacción hayan terminado correctamente o fracasado. De esa forma el ServiceWorker sabe cuando dar por terminada la instalación.
+- Un ServiceWorker no recibirá eventos **fetch** ni **push** hasta haya instalado correctamente y su estado sea **active**.
 - Por defecto, los *fetch* de una página no atravesarán un ServiceWorker a menos que la solicitud (del HTML) de la propia página en sí lo haya hecho (a través del service worker). Por lo tanto, se tiene que actualizar la página para ver los efectos del ServiceWorker.
-- clients.claim() puede anular esta configuración predeterminada y tomar el control de las páginas no supervisadas (aunque no hayan sido cargadas a través del ServiceWorker).
+- **clients.claim()** puede anular esta configuración predeterminada y tomar el control de las páginas no supervisadas (aunque no hayan sido cargadas a través del ServiceWorker).
 - Por defecto, si no existe un ServiceWorker previo, se pasa directamente desde la instalación a la activación.
 - Si existe un Serviceworker previo, el nuevo Serviceworker queda en espera y no puede activarse mientras no se salga de la página y se vuelva a ella o haya pasado un determinado periodo de tiempo. Si se desea forzar que el nuevo ServiceWorker se active, se debe ejecutar **self.skipWaiting()**.
 
-![Cliclo de vida de los ServiceWorkers](.img/ServiceWorker_diagrama.png)
+![Cliclo de vida de los ServiceWorkers](./img/ServiceWorker_diagrama.png)
 
 ## Registro (parseo) de un Service Worker
 Los service worker se declaran en un archivo js separado y en el lugar del árbol de archivos superior de la rama en la que se quiera que este tenga efecto (si se desea que sea aplicable a toda la aplicación, entonces se debe crear el archivo en el directorio raiz de esta). En el siguiente ejemplo se crea un archivo *service-worker.js* inicialmente vacio. En un script del *index.html* se lanzará el proceso de registro del Service Worker de la siguiente manera.
