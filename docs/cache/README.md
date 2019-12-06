@@ -5,7 +5,7 @@ Representa un objeto de caché que contiene una colección de elementos cacheado
 
 - **add(request: Request | string): Promise** -> Realiza la petición fetch indicada en request y almacena en caché la respuesta asociada a dicho request. Solamente tiene efecto si ***response.ok == true***.
 - **addAll(requests: string[]): Promise** -> realiza a misma acción que add, pero con una colección de URL de peticiones pasadas como argumento.
-- **delete(request: Request | string, options?: any): Promise** -> si encuentra y elimina la petición indicada, la promesa resuelve con true, si no la encuentra resuelve con false.
+- **delete(request: Request | string, options?: any): Promise** -> si encuentra la cache suministrada, elimina su petición. Si la encuentra, la promesa resuelve con true, si no la encuentra resuelve con false.
 - **keys(): Promise** -> La promesa resuelve con el array de requests cacheadas.
 - **match(request: Request | string, options?: any): Promise** -> Busca y resuelve con respuesta correspondiente a la request indicada que será un objeto Request o una URL (un string).
 - **matchAll(requests: string[]): Promise** -> Resuleve con un array de respuestas correspondientes al array de peticiones suministrado.
@@ -75,26 +75,37 @@ Tras la instalación (con el cacheo de nuevos recursos) llevada a cabo en el eve
 
 self.addEventListener('fetch', event => {
     console.log('Fetch event:', event.request.url);
+    // 1.- a respondWidth se le debe pasar una promesa que resuelva
+    // con un objeto Response.
+    // 2.- caches.match(request:Request|string) retorna una promesa que resuelve en un
+    // objeto Response está guardado en el caché o undefined si no lo está.
     event.respondWith(
         caches.match(event.request)
         .then(response => {
             if (response) {
+                // Si existe en caché se retorna
                 console.log('Encontrado', event.request.url, 'en caché');
                 return response;
             }
+            // Si no existe en caché intentamos pedirlo al servidor
             console.log('Fetch respuesta:', event.request.url);
             return fetch(event.request).then(response => {
               if(response.status === 404){
+                  // Si no existe en el servidor se retorna la página de no encontrado.
                   return caches.open(NOMBRE_APP_CACHE).then(cache => {
                       return cache.match('pages/404.html');
                   });
               }
+              // Si existe en el servidor se guarda una copia en caché y
+              //  se retorna la respuesta.
               return caches.open(NOMBRE_APP_CACHE).then(cache => {
                 cache.put(event.request.url, response.clone());
                 return response;
               });
             });
         }).catch(error => {
+            // Si el fetch ha lanzado catch es que no ha conexión
+            // por lo tanto se retorna una página de ofline guardada en cache.
             console.log('Error, ', error);
             return caches.match('pages/offline.html');
         })

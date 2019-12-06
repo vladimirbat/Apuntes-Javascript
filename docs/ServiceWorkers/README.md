@@ -37,8 +37,16 @@ Si se consulta la sección *Application* de las DevTools del navegador, seleccio
 - Si la promesa que retorna el método *register* se rechaza (se ejecuta el catch), entonces significa que o el js no se ha encontrado (404), o su sintaxis era incorrecta o se ha producido una excepción en su ejecución. Por tanto el Service Worker no se habrá instalado (no habrá llegado al estado *installed*).
 - Si la promesa que retorna el método *register* se resuelve (se ejecuta el then), entonces significa que el js se ha leido correctamente y justo después se inciará la fase de instalación. Por lo que se lanzará el evento **install** del objeto de la clase ServiceWorkerGlobalScope (desarrollado en el siguiente apartado) accesible mediante la variable **self** desde dentro del js del Service Worker.
 
+## interface ServiceworkerContainer
+Es la interface que implementa el objeto **navigator.serviceWorker**.
+## propiedades
+| propiedad    | Descripción                                            |
+| ------------ | ----------------------------------------------------------------------------------|
+| controller   | referencia al objeto ServiceWorker activo (implemneta la interface ServiceWorker) |
+
+
 ## clase ServiceWorkerGlobalScope
-En el archivo js del Service Worker, se puede acceder mediante la variable ***self*** a un objeto de la clase **ServiceWorkerGlobalScope** que a su vez permite acceder a las propiedades, métodos i eventos del ServiceWorker que se está ejecutando.
+En el archivo js del Service Worker, se puede acceder mediante la variable ***self*** a un objeto de la clase **ServiceWorkerGlobalScope** que a su vez permite acceder a las propiedades, métodos y eventos del ServiceWorker que se está ejecutando.
 #### Propiedades
 
 | propiedad    | Descripción                                            |

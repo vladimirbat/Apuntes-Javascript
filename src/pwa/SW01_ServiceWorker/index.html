@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/index.css" rel="stylesheet">
+  </head>
+  <body>
+    <a href="other.html">Other page</a>   <a href="below/another.html">Another page</a>
+    <script>
+        var previousState = 'none';
+        var currentState = 'none';
+        var tempo;
+        function statusChageHandler(registration){
+            if(registration.installing) {
+                currentState = registration.installing.state;
+            }
+            if (registration.waiting) {
+                currentState = registration.waiting.state;
+            }
+            if (registration.active) {
+                currentState = registration.active.state;
+            }
+            if(previousState !== currentState){
+                console.log(`-------onupdatefound: ${currentState}--------`);
+                previousState = currentState;
+            }
+        }
+        function registeredHandler(registration) {
+            // console.log('parsed');
+            // currentState = 'parsed';
+            statusChageHandler(registration);
+            registration.onupdatefound = function() {
+                statusChageHandler(registration);
+            };
+            tempo = setInterval(function() {
+                statusChageHandler(registration);
+                if (currentState === 'activated') {
+                    clearInterval(tempo);
+                }
+            },50);
+            registration.update(); // Descarga y comprueba si hay una nueva versión del JS
+        }
+        // A01 - Script to register the service worker goes here
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('DOMContentLoaded', () => {
+            navigator.serviceWorker.register('service-worker.js')
+            .then(registeredHandler)
+            .catch(err => console.error('Fallo en el registro:', err));
+
+            setTimeout(function (){
+                var img = new Image();
+                img.src = 'img/mapa1.jpg'
+                img.style.width = '25vw';
+                document.body.appendChild(img);
+            },3000);
+          });
+        }
+
+    </script>
+    <h2>Imágenes</h2>
+  </body>
+</html>
