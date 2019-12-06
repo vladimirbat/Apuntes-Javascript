@@ -22,6 +22,9 @@ En función a los anteriores de prioridad de accesibilidad se establecen los ni
 
 Fuente: Paloma Elena Carretero
 
+## El foco
+El foco en los controles de formulario, por defecto se ordena por la posición en el DOM.
+
 
 
 [Volver al índice de temas](../../README.md)

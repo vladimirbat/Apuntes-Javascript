@@ -69,8 +69,9 @@ Tras la instalación (con el cacheo de nuevos recursos) llevada a cabo en el eve
 ```
 **Nota**: durante el waitUntil los fetch de los clientes quedan en un buffer hasta que termine la activación.
 
-## Gestión de peticiones fetch empleando caché
+## Gestión de peticiones fetch empleando caché (Estrategia cache-first)
 
+En este ejemplo se muestra como implementar una estrategia cache-first que si llega una peición fetch, primero la busca en caché y si la encuentra la retorna. Si por el contrario no existe en caché la pide a la red y la respuesta la clona, una para guardarla en caché y otra para retornarsela a la página.
 ```javascript
 
 self.addEventListener('fetch', event => {
@@ -112,5 +113,9 @@ self.addEventListener('fetch', event => {
     );
 });
 ```
+
+Se pueden consultar otras estrategias de cacheo en:
+
+[PWA Asset Caching Strategies *en codeburst.io*](https://codeburst.io/pwa-asset-caching-strategies-8a20c31b2181)
 
 [Volver al índice de temas](../../README.md)
