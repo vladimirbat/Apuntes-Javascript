@@ -25,5 +25,41 @@ Atributo tabindex:
 - **igual a cero**: seguiran el orden en el que aparecen  en el DOM, pero siempre después de los que tienen valores mayores que cero.
 - **menor que cero (-1)**: estos elementos no pueden recibir el foco mediante el teclado.
 
+## ARIA
+
+Permite definir semanticamente elementos que lo necesiten (por ejemplo cuando se cambia con estilos la funcionalidad de un elemento). Si tuvieramos un *li* que mediante estilos trabajara como un *checkbox*, indicaríamos mediante los atributos **role** y **aria-checked** que, respectivamente, hace función de checkbox y su valor incialmente está seleccionado.
+
+```html
+    <li tabindex="0" class="checkbox" role="checkbox" checked aria-checked="true">
+        recibir ofertas comerciales
+    </li>
+```
+
+Los elementos que hacen la función estándar no necesitan agregación de etiquetas Aria.
+
+**aria-label** permite indicar la descripción de un elemento:
+
+```html
+    <button aria-label="screen reader only label"></button>
+```
+
+Con **aria-controls** se puede indicar que un elemento influye en el comportamiento de otro:
+
+```html
+    <div role="scrollbar" aria-controls="principal"></div>
+    <div id="principal">
+        ...
+    </div>
+```
+
+Con **aria-live** se puede indicar que el contenido puede cambiar (está vivo) para que la herramienta asistencial pueda avisarnos de esos cambios:
+
+```html
+    <div aria-live="true">
+      <span>PUNTOS: 400</span>
+    </div>
+```
+
+Cuando se cree un widget personalizado, el atributo role debe estar en la misma etiqueta que tabindex para que se le puedan aplicar las tareas de teclado.
 
 [Volver al índice de temas](../../README.md)

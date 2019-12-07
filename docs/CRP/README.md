@@ -51,13 +51,27 @@ Por lo tanto el proceso de decisión debería ser el siguiente:
 
 Fuente de imagenes: [somostechies.com](https://somostechies.com/async-vs-defer/).
 
-##Precarga y preconexión de JS y CSS
+## Precarga y preconexión de JS y CSS
 El la cabecera del documento HTML, se puede indicar mediante enlaces link que precargue hojas de estilo, scripts y fuentes.
 
 ```html
     <link rel="preload" as="script" href="super-important.js" />
     <link rel="preload" as="style" href="critical.css" />
     <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="myfont.woff2" />
+```
+## Prefetching de recursos de la siguiente página
+
+Una vez cargada una página, se pueden cargar los recursos (incluso el propio html) de la siguiente mediante links de tipo prefetch.
+
+```html
+    <link rel="prefetch" href="/images/big.jpeg"/>
+    <link rel="next" href="2.html"/>
+```
+
+## Carga asíncrona de CSS (mitad inferior de la página)
+
+```html
+    <link rel="preload" href="path/to/mystylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
 ```
 
 [Volver al índice de temas](../../README.md)
