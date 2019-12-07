@@ -109,9 +109,9 @@ var request = new Request('https://example.com/api/users', {
 	body: JSON.stringify({nombre: 'Daniel', apellidos: 'Valiente'})
 	headers: new Headers({
 		  'Accept': 'application/json',
-      'Content-Type': 'application/json'
-  })
-});
+          'Content-Type': 'application/json'
+      })
+    });
 fetch(request).then(function() { /* gestión de la respuesta */ });
 
 ```
