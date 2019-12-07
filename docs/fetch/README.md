@@ -100,7 +100,7 @@ La función **fetch**, en lugar de recibir como argumento un string con la url d
 
 El constructor de los **Request** recibe como primer argumento, la URL y como segundo, un objeto JSON con la configuración adicional:
 ```javascript
-new Request(url: string, config: any)
+    new Request(url: string, config: any)
 ```
 A continuación se muestra un ejemplo de una petición POST en a que se envía (*Content-Type*) información en formato JSON y la recibe teambién en ese formato (*Accept*).
 ```javascript
