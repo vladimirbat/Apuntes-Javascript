@@ -60,6 +60,10 @@ Con **aria-live** se puede indicar que el contenido puede cambiar (está vivo) p
     </div>
 ```
 
-Cuando se cree un widget personalizado, el atributo role debe estar en la misma etiqueta que tabindex para que se le puedan aplicar las tareas de teclado.
+Cuando se cree un widget personalizado, el atributo **role** debe estar en la misma etiqueta que **tabindex** para que se le puedan aplicar las acciones de teclado.
+
+A continuación se muestra los valores más importantes que puede tomar **role**:
+
+![Listado de aria roles](./img/aria-roles.jpg)
 
 [Volver al índice de temas](../../README.md)
