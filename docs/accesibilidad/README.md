@@ -66,4 +66,23 @@ A continuación se muestra los valores más importantes que puede tomar **role**
 
 ![Listado de aria roles](./img/aria-roles.jpg)
 
+## Referencia ARIA oficial
+
+- [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/)
+## ARIA Labels y relaciones
+
+- **aria-label**: indica el significado y usabilidad de algo reescribiendo cualquier otra descripción incluso la etiqueta \<label>.
+- **aria-labelledby**: apunta al id (o varios id) de otro elemento (u otros elementos) del DOM que tiene la descripción del elemento. Puede apuntar a elementos ocultos que por defecto serian ignorados por la herramienta. Nota: aria-labelledby prevalece sobre aria-label y label.
+- Otros atributos de relación: aria-activedescendant, aria-controls, aria-describedby y aria-owns. Consultarlos en (Etiquetas y relaciones de ARIA)[https://developers.google.com/web/fundamentals/accessibility/semantics-aria/aria-labels-and-relationships].
+- **aria-hidden**: permite indicar un bloque que debe ser ignorado por la herramienta (aunque puede contener elementos apuntados por *aria-labelledby*).
+- **aria-live**: Puede tomar los valores *off*, *polite*, *assertive* para indicar los valores de urgencia con la que se tiene que avisar de los cambios del elemento. Los atributos aria-atomic, aria-relevant y aria-busy están relacionados con aria-live y su significado se puede consultar en [Cómo ocultar y actualizar contenido](https://developers.google.com/web/fundamentals/accessibility/semantics-aria/hiding-and-updating-content).
+
+## Estilos accesibles
+Consultar [Estilos accesibles](https://developers.google.com/web/fundamentals/accessibility/accessible-styles).
+
+## Auditoria
+La auditoría se puede realizar de forma manual o apoyandose en herramientas como lighthouse.
+
+[How To Do an Accessibility Review](https://developers.google.com/web/fundamentals/accessibility/how-to-review)
+
 [Volver al índice de temas](../../README.md)
