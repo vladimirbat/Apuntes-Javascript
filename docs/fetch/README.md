@@ -104,16 +104,15 @@ new Request(url: string, config: any)
 ```
 A continuación se muestra un ejemplo de una petición POST en a que se envía (*Content-Type*) información en formato JSON y la recibe teambién en ese formato (*Accept*).
 ```javascript
-var request = new Request('https://example.com/api/users', {
-	method: 'POST',
-	body: JSON.stringify({nombre: 'Daniel', apellidos: 'Valiente'})
-	headers: new Headers({
-		  'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      })
+    var request = new Request('https://example.com/api/users', {
+    	method: 'POST',
+    	body: JSON.stringify({nombre: 'Daniel', apellidos: 'Valiente'})
+    	headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        })
     });
-fetch(request).then(function() { /* gestión de la respuesta */ });
-
+    fetch(request).then(function() { /* gestión de la respuesta */ });
 ```
 El objeto de configuración (**config**) del Request puede contener las siguientes propiedades:
 
