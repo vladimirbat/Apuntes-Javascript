@@ -14,6 +14,7 @@ Apuntes del lenguaje Javascript y sus principales API
 6. [Formularios web](./docs/formularios/README.md)
 ## Herramientas
 1. [Atom](./docs/atom/README.md)
+2. [Recordatorio de NPM](.docs/npm/README.md)
 
 ## Sass
 1. [Variables en Sass](./docs/sass/variables_sass/README.md)
@@ -28,3 +29,4 @@ Apuntes del lenguaje Javascript y sus principales API
 1. [Critical Render Path (CRP)](./docs/CRP/README.md)
 ## Accesibilidad
 1. [Conceptos básicos de Accesibilidad](./docs/accesibilidad/README.md)
+
