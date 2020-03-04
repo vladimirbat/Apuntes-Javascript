@@ -28,4 +28,5 @@ Apuntes del lenguaje Javascript y sus principales API
 1. [Critical Render Path (CRP)](./docs/CRP/README.md)
 ## Accesibilidad
 1. [Conceptos básicos de Accesibilidad](./docs/accesibilidad/README.md)
-
+## Programación orientada a objetos con TypeScript
+1. [Conceptos básicos de TypeScript](.docs/ts/ts_basico/README.md)
