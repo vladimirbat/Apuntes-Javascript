@@ -52,13 +52,17 @@ Por lo tanto el proceso de decisión debería ser el siguiente:
 Fuente de imagenes: [somostechies.com](https://somostechies.com/async-vs-defer/).
 
 ## Precarga y preconexión de JS y CSS
-El la cabecera del documento HTML, se puede indicar mediante enlaces link que precargue hojas de estilo, scripts y fuentes.
+El la cabecera del documento HTML, se puede indicar mediante enlaces link que precargue hojas de estilo, scripts y fuentes. Esto puede ser especialmente interesante para precargar recursos (fuentes, imágenes, vídeos) que posteriormente serán requeridos desde el código (js) u hojas de estilo (CSS).
 
 ```html
     <link rel="preload" as="script" href="super-important.js" />
     <link rel="preload" as="style" href="critical.css" />
     <link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="myfont.woff2" />
 ```
+En el caso de vídeos y fuentes, la inclusión del tipo mime (atributo type), permite al navegador descargar el recurso solamente si es capaz de interpretar su formato.
+
+Ver más detalle en [MDN preloading content](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content).
+
 ## Prefetching de recursos de la siguiente página
 
 Una vez cargada una página, se pueden cargar los recursos (incluso el propio html) de la siguiente mediante links de tipo prefetch.
