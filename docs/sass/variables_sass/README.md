@@ -23,7 +23,7 @@ Las variables Sass son imperativas lo que significa que se puede usar el valor d
 ```
 En el ejemplo, aunque las clases fondo-negro y fondo-gris tienen asignado para el color de fondo la variable $color1, fondo-negro tendrá el color #000000 y fondo-gris tendrá el color #444444.
 ## Nombres de variables con guiones medios y bajos
-En la declaración de variables en Sass, el uso de guiones medios y bajos es equivalente. Es decir en el ejmplo anterior, aunque declaremos la variable con guíon medio y luego la usemos con guión bajo, serán la misma variable.
+En la declaración de variables en Sass, el uso de guiones medios y bajos es equivalente. Es decir en el ejemplo anterior, aunque declaremos la variable con guíon medio y luego la usemos con guión bajo, serán la misma variable.
 ```scss
     $color-fondo: #000000;
     .fondo-negro {
@@ -31,7 +31,7 @@ En la declaración de variables en Sass, el uso de guiones medios y bajos es equ
     }
 ```
 ## Variables por defecto
-La asignación de una variable puede tener despues del valor el modificador **!default**. Esto permite indicar el valor que tomará la variable si no se le asigna un valor (si no se reescrive) o si tiene asignado el valor null. Por tanto asginar null a una variable conlleva que tome su valor por defecto. Ejemplo:
+La asignación de una variable puede tener despues del valor el modificador **!default**. Esto permite indicar el valor que tomará la variable si no se le asigna un valor (si no se reescribe) o si tiene asignado el valor null. Por tanto asginar null a una variable conlleva que tome su valor por defecto. Ejemplo:
 
 ```scss
     // _library.scss
