@@ -1,4 +1,4 @@
-# Critical Render Path (CRP
+# Critical Render Path (CRP)
 El camino crítico de renderizado es el conjunto de tareas que realiza el navegador desde que se realiza la solicitud del html de una página, hasta que esta es renderizada (convertida a pixels). En este camino crítico intervienen los scripts y css que haya en la página bien inline o referenciados en archios externos (que se deberán descargar también).
 
 ![Fases CRP](./img/CRP_Phases.png)
