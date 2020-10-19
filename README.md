@@ -20,7 +20,7 @@ Apuntes del lenguaje Javascript y sus principales API
 1. [Atom](./docs/atom/README.md)
 2. [Recordatorio de NPM](./docs/npm/README.md)
 3. [Bibliotecas de utilidad](./docs/bibliotecas_de_utilidad/README.md)
-4. [Módulos JavaScript: CommonJS, AMD, RequireJS, Módulos ES6](./docs/modulos_js/README.md)
+4. [Módulos JavaScript: CommonJS, AMD, RequireJS, Módulos ES6 y UMD](./docs/modulos_js/README.md)
 
 
 ## Sass
