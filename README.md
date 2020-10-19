@@ -6,7 +6,7 @@ Apuntes del lenguaje Javascript y sus principales API
 1. [DOM (Document Obejct Model)](./docs/DOM/README.md)
 2. [Expresiones falsy (que retornan falso)](./docs/falsy/README.md)
 
-## Módulos
+## API JavaScript
 1. [API fetch](./docs/fetch/README.md)
 2. PWA
     * [Service Workers](./docs/ServiceWorkers/README.md)
