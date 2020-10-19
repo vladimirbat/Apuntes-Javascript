@@ -18,7 +18,8 @@ Apuntes del lenguaje Javascript y sus principales API
 
 ## Herramientas
 1. [Atom](./docs/atom/README.md)
-2. [Recordatorio de NPM](.docs/npm/README.md)
+2. [Recordatorio de NPM](./docs/npm/README.md)
+3. [Bibliotecas de utilidad](./docs/bibliotecas_de_utilidad/README.md)
 
 ## Sass
 1. [Variables en Sass](./docs/sass/variables_sass/README.md)
