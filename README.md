@@ -1,6 +1,13 @@
-<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 # Apuntes-Javascript
+
 Apuntes del lenguaje Javascript y sus principales API
+
+Autor: [Vladimir Bataller](https://github.com/vladimirbat)
+- [LinkedIn](https://www.linkedin.com/in/vladimirbataller/)
+- [Twitter](https://twitter.com/VladBataller)
+
+<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+
 
 ## JavaScript Básico
 1. [DOM (Document Obejct Model)](./docs/DOM/README.md)
