@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de HTML Templates</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelector('#mostrarPlantilla').addEventListener('click', () => {
+                const plantilla = document.querySelector("#plantilla");
+                const content = plantilla.content;
+                const fragment = content.cloneNode(true);
+                const destino = document.querySelector('#marco');
+                destino.appendChild(fragment);
+            });
+        });
+    </script>
+    <style>
+        div { border: 1px solid black; margin: 1.5rem auto; padding: 1rem;}
+        div#marco {
+            background-color: khaki;
+        }
+    </style>
+</head>
+<body>
+    <template id="plantilla">
+        <div>
+            <ul>
+                <li>A</li>
+                <li>B</li>
+            </ul>
+        </div>
+    </template>
+    <div><button id="mostrarPlantilla">Mostrar Plantilla</button></div>
+    <div id="marco">
+
+    </div>
+</body>
+</html>

@@ -15,6 +15,10 @@ Apuntes del lenguaje Javascript y sus principales API
 3. [IndexedDB API](./docs/IndexedDB/README.md)
 4. [Etiquetas de Video y Audio](./docs/video_y_audio/REDAME.md)
 5. [Formularios web](./docs/formularios/README.md)
+6. [Web Components](./docs/web_components/README.md)
+    * [Custom Elements](./docs/web_components/custom_elements/README.md)
+    * [HTML Templates](./docs/web_components/html_templates/README.md)
+    * [Shadow DOM](./docs/web_components/shadow_dom/README.md)
 
 ## Herramientas
 1. [Atom](./docs/atom/README.md)

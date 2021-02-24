@@ -28,10 +28,16 @@ El primer elemento que introduce TypeScript es la posibilidad de, al declarar un
 
 ## Tipos de datos compuestos
 
+(TO-DO)
+
 tuplas: [number, string, boolean]
-enumeraciones:   enum Color {Red, Green, Blue};     let c: Color = Color.Green;
+enumeraciones:   e
+    num Color {Red, Green, Blue};     
+    let c: Color = Color.Green;
 
 
 
 
 ## Tipado de funciones
+
+(TO-DO)

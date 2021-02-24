@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event){
+            const container = document.querySelector('#container');
+            const newElement = document.createElement('button');
+            newElement.innerText = 'Botón en Shadow';
+            /*
+                Se crea un arbol Shadow dentro del div 'container'. 
+                A este arbol se le pueden agregar elementos mediante
+                su objeto ShadowRoot. Si el modo del arbol es 'closed',
+                entonces el objeto ShadowRoot solamente es accesible
+                como el valor que retorna el attachShadow en su creación.
+                Por el contrario, si el mode del arbol es 'open',
+                entonces también se puede acceder al ShadowRoot mediante
+                la propiedad shadowRoot del 'container'.
+            */
+            const shadowRoot = container.attachShadow({mode:'closed'});
+            shadowRoot.appendChild(newElement);
+            container.shadowRoot.appendChild(document.createElement('hr'))
+        });
+    </script>
+    <style>
+        div#container{
+            min-height: 12rem;
+            background-color: peachpuff;
+            padding: 1em;
+        }
+        div#container button{
+            background-color: seagreen;
+            min-height: 3em;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button>Shinny button</button>
+    </div>
+</body>
+</html>
