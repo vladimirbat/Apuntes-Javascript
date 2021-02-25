@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Elements</title>
+    <style>
+        div.container{
+            border-radius: 1rem;
+            border:1px solid black;
+            box-shadow: 5px 10px #888888;
+            background-color: lavender;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem;
+        }
+    </style>
+    <script>
+        // ---- Calculadora sin shadow -----------------
+        class CalculadoraInicial extends HTMLElement {
+            constructor(){
+                super();
+            }
+            connectedCallback(){
+                const a = parseFloat(this.getAttribute('a'));
+                const b = parseFloat(this.getAttribute('b'));
+                const div = document.createElement('div');
+                div.className = 'container';
+                div.textContent = a + ' + ' + b + ' = ' + (a + b);
+                this.appendChild(div);
+            }
+        }
+        // customElements.define(name, constructor, {extends='h1'});
+        customElements.define('calculadora-inicial', CalculadoraInicial);
+        // ---- Calculadora con shadow DOM open -----------------
+        class CalculadoraConShadow extends HTMLElement {
+            constructor(){
+                super();
+                const shadowRoot = this.attachShadow({mode:'open'});
+            }
+            connectedCallback(){
+                const styles = document.createElement("style");
+                styles.textContent = `div.container{
+                    border-radius: 1rem;
+                    border:1px dashed black;
+                    box-shadow: 5px 10px #888888;
+                    background-color: khaki;
+                    padding: 1.5rem;
+                    text-align: center;
+                    margin: 1.5rem;
+                    font-weight: bold;
+                }`
+                const a = parseFloat(this.getAttribute('a'));
+                const b = parseFloat(this.getAttribute('b'));
+                const div = document.createElement('div');
+                div.className = 'container';
+                div.textContent = a + ' + ' + b + ' = ' + (a + b);
+                this.shadowRoot.appendChild(styles);
+                this.shadowRoot.appendChild(div);
+            }
+        }
+        customElements.define('calculadora-con-shadow-open', CalculadoraConShadow);
+        // ---- Calculadora con shadow DOM closed -----------------
+        class CalculadoraConShadowClosed extends HTMLElement {
+            constructor(){
+                super();
+                this.closedShadowRoot = this.attachShadow({mode:'closed'});
+            }
+            connectedCallback(){
+                console.log(this.closedShadowRoot);
+                const link = document.createElement("link");
+                link.setAttribute('rel', 'stylesheet');
+                link.setAttribute('type', 'text/css');
+                link.setAttribute('href', './elements.css');
+                const a = parseFloat(this.getAttribute('a'));
+                const b = parseFloat(this.getAttribute('b'));
+                const div = document.createElement('div');
+                div.className = 'container';
+                div.textContent = a + ' + ' + b + ' = ' + (a + b);
+                this.closedShadowRoot.appendChild(link);
+                this.closedShadowRoot.appendChild(div);
+            }
+        }
+        customElements.define('calculadora-con-shadow-closed', CalculadoraConShadowClosed);
+    </script>
+</head>
+<body>
+    <calculadora-inicial a="3" b="4" ></calculadora-inicial>
+    <hr/>
+    <calculadora-con-shadow-open a="3" b="4" ></calculadora-con-shadow-open>
+    <hr/>
+    <calculadora-con-shadow-closed a="3" b="4" ></calculadora-con-shadow-closed>
+    <hr/>
+
+</body>
+</html>

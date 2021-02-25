@@ -1,0 +1,11 @@
+div.container{
+    border-radius: 1rem;
+    border:3px solid cadetblue;
+    box-shadow: 5px 10px #888888;
+    background-color: darksalmon;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 1.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Slots</title>
+    <script>
+        customElements.define('plantilla-util',
+            class extends HTMLElement {
+                constructor() {
+                    super();
+                    let template = document.getElementById('plantilla-util');
+                    let templateContent = template.content;
+
+                    const shadowRoot = this.attachShadow({mode: 'open'})
+                        .appendChild(templateContent.cloneNode(true));
+                }
+            }
+        );
+
+    </script>
+</head>
+<body>
+
+    <template id="plantilla-util">
+        <style>
+            p {border: 1px solid black;}
+        </style>
+        <p><slot name="texto-interior">Mi texto predeterminado</slot></p>
+    </template>
+
+<h1>Inserción de plantilla asignandole valor al slot</h1>
+
+    <plantilla-util>
+        <ul slot="texto-interior">
+            <li>¡Lunes!</li>
+            <li>¡Martes!</li>
+        </ul>
+    </plantilla-util>
+
+</body>
+</html>

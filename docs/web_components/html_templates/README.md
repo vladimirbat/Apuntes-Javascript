@@ -39,3 +39,44 @@ Las plantillas HTML cobran mayor potencia en su uso con Custom Elememnts pues se
 
 
 
+## Personalización de plantillas mediante Slots
+
+Definición de una plantilla con un slot (con nombre *texto*):
+
+```html
+    
+    <template id="plantilla-util">
+        <style>
+            p {border: 1px solid black;}
+        </style>
+        <p><slot name="texto-interior">Mi texto predeterminado</slot></p>
+    </template>
+```
+
+Uso de la plantilla asignandole un valor para su slot:
+
+```html
+    <plantilla-util>
+        <ul slot="texto-interior">
+            <li>¡Lunes!</li>
+            <li>¡Martes!</li>
+        </ul>
+    </plantilla-util>
+```
+
+Nota la declaración del Custom Element **plantilla-util** sería:
+
+```javascript
+    customElements.define('plantilla-util',
+        class extends HTMLElement {
+            constructor() {
+                super();
+                let template = document.getElementById('plantilla-util');
+                let templateContent = template.content;
+
+                const shadowRoot = this.attachShadow({mode: 'open'})
+                    .appendChild(templateContent.cloneNode(true));
+            }
+        }
+    );
+```
