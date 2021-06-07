@@ -8,6 +8,6 @@ Son un conjunto de 4 especificaciones (hoy en día solamente 3, pues una está d
 
 ## Indice
 
-    * [Custom Elements](./custom_elements/README.md)
-    * [HTML Templates](./html_templates/README.md)
-    * [Shadow DOM](./shadow_dom/README.md)
+    * [Custom Elements](../custom_elements/README.md)
+    * [HTML Templates](../html_templates/README.md)
+    * [Shadow DOM](../shadow_dom/README.md)
