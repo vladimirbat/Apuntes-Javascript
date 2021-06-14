@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Element con JS</title>
+    <style>
+
+    </style>
+    
+    <script>
+        // ############ Custom Element Hola Mundo ##################3
+        class HolaMundoComponent extends HTMLElement{
+            constructor(){
+                super();
+                this.size = 14;
+            }
+            connectedCallback(){
+                if(this.isConnected && !this.insertado){
+                    this.insertado = true;
+                    const div = document.createElement('div');
+                    div.className = 'saludo'
+                    const nombre = this.getAttribute('nombre');
+                    const apellidos = this.getAttribute('apellidos');
+                    div.textContent = `¡Hola ${nombre} ${apellidos}!` ;
+                    div.style.fontSize = `${this.size}px`;
+                    this.appendChild(div);
+                }
+            }
+            // Indicamos que atributos se deben monitorizar para tenerlos en cuenta cuando cambien
+            static get observedAttributes(){
+                return ['size'];
+            }
+
+            // Se ejectua cada vez que cambia uno de los atributos de entrada monitorizados
+            attributeChangedCallback(attrName, oldValue, newValue){
+                console.log('Cambiado', attrName, oldValue, '->', newValue);
+                if(attrName==='size' && newValue){
+                    this.size = newValue;
+                    const div = this.querySelector('div');
+                    div.style.fontSize = `${this.size}px`;
+                }
+            }
+        }
+
+        customElements.define('hola-mundo',HolaMundoComponent);
+    </script>
+</head>
+<body>
+    <<h1>Custom Element:</h1>
+    <hola-mundo nombre="Daniel" apellidos="Valiente"></hola-mundo>
+    <hr/>
+    <hola-mundo nombre="Laura" apellidos="Villanueva"></hola-mundo>
+    <hr/>
+    <button id="incrementar">Incrementar tamaño del primer elemento</button>
+    <script>
+        let tamFuente = 14;
+        function cambiarFuente(){
+            tamFuente += 2;
+            document.querySelector('hola-mundo').setAttribute('size', tamFuente);
+        }
+        document.addEventListener('DOMContentLoaded', (event)=>{
+            document.getElementById('incrementar').addEventListener('click', (event)=> cambiarFuente());
+        });
+
+    </script>
+</body>
+</html>

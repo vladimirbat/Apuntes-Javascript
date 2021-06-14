@@ -1,0 +1,10 @@
+span{
+    background-color: yellow;
+    padding: 1rem;
+    display: inline-block;
+    width: 20rem;
+    text-align: center;
+}
+span:hover{
+    background-color: aqua;
+}

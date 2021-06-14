@@ -37,15 +37,17 @@ Por último, el Custom Element se inserta en el documento HTML mediante el nombr
 
 ## Atributos de un Custom Element
 
-Un Custom Element puede recibir datos del exterior (resto del documento HTML) mediate atributos (o propiedades). Desde el Custom Event, esos atributos se pueden leer mediante el método ***getAttribute*** que recibe como argumento el nombre del atributo:
+Un Custom Element puede recibir datos del exterior (resto del documento HTML) mediate atributos (o propiedades). Desde el Custom Element, esos atributos se pueden leer mediante el método ***getAttribute*** que recibe como argumento el nombre del atributo:
 
 ```javascript
     class HolaMundoComponent extends HTMLElement{
         constructor(){
             super();
+            this.insertado = false;
         }
         connectedCallback(){
-            if(this.isConnected){
+             if(this.isConnected && !this.insertado){
+                this.insertado = true;
                 const div = document.createElement('div');
                 div.className = 'saludo'
                 const nombre = this.getAttribute('nombre');
@@ -59,6 +61,18 @@ Un Custom Element puede recibir datos del exterior (resto del documento HTML) me
     customElements.define('hola-mundo',HolaMundoComponent);
 ```
 
+Los valores de los atributos se le pueden pasar al componente directamente en el HTML.
+
+```html
+    <h1>Custom Element:</h1>
+    <hola-mundo nombre="Daniel" apellidos="Valiente"></hola-mundo>
+    <hr/>
+    <hola-mundo nombre="Laura" apellidos="Villanueva"></hola-mundo>
+```
+
+
+En este ejemplo, los atributos solamente se pueden leer si están asignados a la etiqueta desde el principio. Para leer los valores asignados desde JavaScript una vez el componente se ha visualizado, se debe emplear la detección de cambios explicada en el siguiente apartado.
+
 ## Detección de cambios de los atributos de entrada
 
 Se puede indicar los attributos de entrada cuyos cambios se quiere que sean observados, para ello, el método *static get observedAttributes* debe retornar un array con los nombres de los atributos observados.
@@ -69,7 +83,7 @@ Se puede indicar los attributos de entrada cuyos cambios se quiere que sean obse
     }
 ```
 
-El método que se ejectuará cuando dichos atributos cambien será, *attributeChangedCallback*: 
+El método (callback) que se ejectuará cuando dichos atributos cambien, será *attributeChangedCallback*: 
 ```javascript
     attributeChangedCallback (attrName, oldValue, newValue) {
         console.log(attrName + ':',  oldValue , '->',  newValue);
