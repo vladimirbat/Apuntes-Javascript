@@ -61,7 +61,6 @@ Uso de la plantilla asignandole un valor para su slot:
             <li>¡Lunes!</li>
             <li>¡Martes!</li>
         </ul>
-        <button>List</button>
     </div>
 </borde-con-sombral>
 ```
