@@ -34,19 +34,13 @@
                     this.appendChild(div);
                 }
             }
-            // Indicamos que atributos se deben monitorizar para tenerlos en cuenta cuando cambien
-            static get observedAttributes(){
-                return ['size'];
-            }
+            // ====> Indicar que el atributo 'size' que se debe monitorizar para tenerlo en cuenta cuando cambie.
+            
 
-            // Se ejectua cada vez que cambia uno de los atributos de entrada monitorizados
-            attributeChangedCallback(attrName, oldValue, newValue){
-                console.log('Cambiado', attrName, oldValue, '->', newValue);
-                if(attrName==='size' && newValue){
-                   this.onSizeChanged(newValue);
-                }
-            }
+            // ====> leer el atributo 'size' cuando cambie y llamar al método onSizeChenged pasandole el nuevo valor de ese atributo.
 
+
+            
             onSizeChanged(value){
                 this.size = value;
                 const div = this.querySelector('div');

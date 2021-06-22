@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Element con JS</title>
+    <style>
+        div.pagina{
+            padding: 2.5rem;
+        }
+        div.saludo {
+            border: 1px solid black;
+            background-color: darkkhaki;
+        }
+    </style>
+    
+    <script>
+        // ############ Custom Element Hola Mundo ##################3
+        class HolaMundoComponent extends HTMLElement{
+            constructor(){
+                super();
+                this.insertado = false;
+            }
+            connectedCallback(){
+                if(this.isConnected && !this.insertado){
+                    this.insertado = true;
+                    const div = document.createElement('div');
+                    div.className = 'saludo'
+                    // ======> Leer los atributos de entrada (inputs) 'nombre' y 'apellidos' 
+                    // e insertar en el div un texto que salude a la persona con esos datos.
+                    this.appendChild(div);
+                }
+            }
+        }
+
+        customElements.define('hola-mundo',HolaMundoComponent);
+
+        
+        // ############ Inicialización ##################3
+        document.addEventListener('DOMContentLoaded',()=>{
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="pagina">
+        <h1>Custom Element:</h1>
+        <!-- Agregar a esta instancia del custom element el nombre y apellidos que quieras -->
+        <hola-mundo></hola-mundo>
+        <hr/>
+        <!-- Agregar a esta instancia del custom element otro  nombre y apellidos -->
+        <hola-mundo></hola-mundo>
+    </div>
+</body>
+</html>

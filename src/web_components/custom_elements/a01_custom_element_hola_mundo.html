@@ -25,6 +25,7 @@
             }
             // Método que se ejecuta cada vez que el Componente se inserta en el DOM
             connectedCallback(){
+                console.log('---- Connected ----')
                 // el atributo isConnected permite saber si actualmente el componente está insertado en dom.
                 if(this.isConnected && !this.insertado){
                     this.insertado = true;
@@ -34,8 +35,12 @@
                     this.appendChild(div);
                 }
             }
-        }
 
+            disconnectedCallback(){
+                console.log('--- Disconnected ---');
+            }
+        }
+        // ########## Declaración del Web Component con su etiqueta ##############
         customElements.define('hola-mundo',HolaMundoComponent);
     </script>
 </head>

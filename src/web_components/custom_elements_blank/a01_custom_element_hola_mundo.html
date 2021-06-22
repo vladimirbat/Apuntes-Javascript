@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Element con JS</title>
+    <style>
+        div.pagina{
+            padding: 2.5rem;
+        }
+        div.saludo {
+            border: 1px solid black;
+            background-color: darkkhaki;
+        }
+    </style>
+    
+    <script>
+        // =====> Declara la clase de un Custom Element llamado HolaMundoComponent y 
+        // registrarla con la etiqueta 'hola-mundo'
+        
+    </script>
+</head>
+<body>
+    <div class="pagina">
+        <h1>Custom Element:</h1>
+        <!-- ======> Insertar una instancia del Custom Element -->
+        
+        <hr/>
+        <div id="contenedor">
+            <!-- ======> Insertar una instancia del Custom Element -->
+
+        </div>
+    </div>
+    <script>
+        let holaMundo;
+        function quitar(){
+            holaMundo = document.querySelector('div#contenedor>hola-mundo');
+            document.getElementById('contenedor').removeChild(holaMundo);
+        }
+        function poner(){
+            document.getElementById('contenedor').appendChild(holaMundo);
+        }
+        document.addEventListener('DOMContentLoaded', (event)=>{
+            setTimeout(()=>{
+                quitar();
+                setTimeout(poner, 3000);
+            },3000);
+        });
+    </script>
+</body>
+</html>

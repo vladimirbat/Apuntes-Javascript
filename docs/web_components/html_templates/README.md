@@ -33,7 +33,7 @@ document.querySelector('#mostrarPlantilla').addEventListener('click', () => {
 });
 ```
 ## Uso de HTML Template con Custom Elements
-Las plantillas HTML cobran mayor potencia en su uso con Custom Elememnts pues se pueden particularizar con el uso de:
+Las plantillas HTML adquieren mayor potencia en su uso en Custom Elememnts, pués se pueden particularizar con:
 - Slots (etiqueta ***slot***) 
 - Estilos encapsulados dentro del Custom Element.
 
@@ -44,38 +44,37 @@ Las plantillas HTML cobran mayor potencia en su uso con Custom Elememnts pues se
 Definición de una plantilla con un slot (con nombre *texto*):
 
 ```html
-    
-    <template id="plantilla-util">
-        <style>
-            p {border: 1px solid black;}
-        </style>
-        <p><slot name="texto-interior">Mi texto predeterminado</slot></p>
-    </template>
+<template id="plantilla">
+    <style>
+        p {border: 1px solid black;box-shadow: 10px 5px 5px gray;padding: 2em;}
+    </style>
+    <p><slot name="texto-interior">Mi texto predeterminado</slot></p>
+</template>
 ```
 
 Uso de la plantilla asignandole un valor para su slot:
 
 ```html
-    <plantilla-util>
-        <ul slot="texto-interior">
+<borde-con-sombra>
+    <div slot="texto-interior">
+        <ul>
             <li>¡Lunes!</li>
             <li>¡Martes!</li>
         </ul>
-    </plantilla-util>
+        <button>List</button>
+    </div>
+</borde-con-sombral>
 ```
 
 Nota la declaración del Custom Element **plantilla-util** sería:
 
 ```javascript
-    customElements.define('plantilla-util',
+    customElements.define('borde-con-sombra',
         class extends HTMLElement {
             constructor() {
                 super();
-                let template = document.getElementById('plantilla-util');
-                let templateContent = template.content;
-
-                const shadowRoot = this.attachShadow({mode: 'open'})
-                    .appendChild(templateContent.cloneNode(true));
+                const plantilla = document.getElementById('plantilla');
+                this.attachShadow({mode: 'open'}).appendChild(plantilla.content.cloneNode(true));
             }
         }
     );
