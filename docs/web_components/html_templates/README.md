@@ -41,7 +41,7 @@ Las plantillas HTML adquieren mayor potencia en su uso en Custom Elememnts, pué
 
 ## Personalización de plantillas mediante Slots
 
-Definición de una plantilla con un slot (con nombre *texto*):
+Definición de una plantilla con un slot (con nombre *texto-interior*):
 
 ```html
 <template id="plantilla">
@@ -66,7 +66,7 @@ Uso de la plantilla asignandole un valor para su slot:
 </borde-con-sombral>
 ```
 
-Nota la declaración del Custom Element **plantilla-util** sería:
+Nota la declaración del Custom Element **borde-con-sombra** sería:
 
 ```javascript
     customElements.define('borde-con-sombra',
