@@ -12,3 +12,4 @@ Son un conjunto de 4 especificaciones (hoy en día solamente 3, pues una está d
 - [HTML Templates](../html_templates/README.md)
 - [Shadow DOM](../shadow_dom/README.md)
 - [Custom Properties y su uso en Web Components](../custom_properties/README.md)
+- [Custom Events](../custom_events/README.md)
