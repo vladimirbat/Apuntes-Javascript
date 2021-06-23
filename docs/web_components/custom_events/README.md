@@ -1,7 +1,7 @@
 # Custom Events
 
 ```javascript
-const CalculadoraEvent = new CustomEvent("calculadoraEvent", options);
+const CalculadoraEvent = new CustomEvent('calculadoraEvent', options);
 ```
 
 ```javascript
