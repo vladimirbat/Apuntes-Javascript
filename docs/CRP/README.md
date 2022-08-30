@@ -41,7 +41,7 @@ La atributo **async** de la etiqueta \<script src=""> indica al navegador que ha
 ![carga de un script sin atributos](./img/script-async.svg)
 
 
-El atributo **defer** en la etiqueta \<script src=""> implia que el sdript se descarga en paralelo y que no se descargue hasta que no se haya construido. Este atributo garantiza que todos los defer se ejecutan en el orden que se han insertado den el documento.
+El atributo **defer** en la etiqueta \<script src=""> implica que el script se descarga en paralelo y que no se ejecute hasta que no se haya construido el DOM. Este atributo garantiza que todos los defer se ejecutan en el orden que se han insertado en el documento.
 
 ![carga de un script sin atributos](./img/script-defer.svg)
 
@@ -52,7 +52,7 @@ Por lo tanto el proceso de decisión debería ser el siguiente:
 Fuente de imagenes: [somostechies.com](https://somostechies.com/async-vs-defer/).
 
 ## Precarga y preconexión de JS y CSS
-El la cabecera del documento HTML, se puede indicar mediante enlaces link que precargue hojas de estilo, scripts y fuentes. Esto puede ser especialmente interesante para precargar recursos (fuentes, imágenes, vídeos) que posteriormente serán requeridos desde el código (js) u hojas de estilo (CSS).
+En la cabecera del documento HTML, se puede indicar mediante enlaces *link* que precargue hojas de estilo, scripts y fuentes. Esto puede ser especialmente interesante para precargar recursos (fuentes, imágenes, vídeos) que posteriormente serán requeridos desde el código (js) u hojas de estilo (CSS).
 
 ```html
     <link rel="preload" as="script" href="super-important.js" />
